@@ -54,15 +54,39 @@ async function ensureStorage() {
   }
 }
 
+function isReadonlyStorageError(error: unknown) {
+  if (!error || typeof error !== "object") return false;
+  const code = "code" in error ? String((error as { code?: unknown }).code ?? "") : "";
+  return code === "EROFS" || code === "EPERM" || code === "EACCES";
+}
+
+function allowVolatileFallback() {
+  return Boolean(process.env.VERCEL) && !isPostgresEnabled();
+}
+
 async function readStorage(): Promise<{ reports: ReportRecord[] }> {
-  await ensureStorage();
-  const content = await fs.readFile(storageFile, "utf-8");
-  return JSON.parse(content) as { reports: ReportRecord[] };
+  try {
+    await ensureStorage();
+    const content = await fs.readFile(storageFile, "utf-8");
+    return JSON.parse(content) as { reports: ReportRecord[] };
+  } catch (error) {
+    if (allowVolatileFallback() && isReadonlyStorageError(error)) {
+      return { reports: [] };
+    }
+    throw error;
+  }
 }
 
 async function writeStorage(payload: { reports: ReportRecord[] }) {
-  await ensureStorage();
-  await fs.writeFile(storageFile, JSON.stringify(payload, null, 2), "utf-8");
+  try {
+    await ensureStorage();
+    await fs.writeFile(storageFile, JSON.stringify(payload, null, 2), "utf-8");
+  } catch (error) {
+    if (allowVolatileFallback() && isReadonlyStorageError(error)) {
+      return;
+    }
+    throw error;
+  }
 }
 
 async function migrateLegacyFileToPostgres(client: PgClient) {
