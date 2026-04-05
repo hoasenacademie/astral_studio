@@ -1,0 +1,24 @@
+Positions des planètes
+Soleil 26°43' Balance
+Lune 12°34' Bélier
+Mercure 10°11' Balance
+Vénus 07°51' Scorpion
+Mars 04°19' Cancer
+Jupiter 15°05' Taureau
+Saturne 22°10' Capricorne
+Uranus 08°18' Capricorne
+Neptune 13°07' Capricorne
+Pluton 16°41' Scorpion
+
+Positions des maisons
+Maison 1 19°46' Bélier
+Maison 2 11°03' Taureau
+Maison 3 09°18' Gémeaux
+Maison 4 12°06' Cancer
+
+Liste des aspects planétaires
+Soleil Conjonction Mercure Orbe 3°11'
+Soleil Carré Mars Orbe 2°24'
+
+Paramètres de calcul
+Thème tropical Domification Placidus Noeud nord vrai Lilith vraie

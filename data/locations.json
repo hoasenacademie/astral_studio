@@ -1,0 +1,2859 @@
+{
+  "cities": [
+    "Paris",
+    "Marseille",
+    "Lyon",
+    "Toulouse",
+    "Nice",
+    "Nantes",
+    "Strasbourg",
+    "Montpellier",
+    "Bordeaux",
+    "Lille",
+    "Rennes",
+    "Reims",
+    "Le Havre",
+    "Saint-Étienne",
+    "Toulon",
+    "Grenoble",
+    "Dijon",
+    "Angers",
+    "Nîmes",
+    "Villeurbanne",
+    "Saint-Denis",
+    "Le Mans",
+    "Aix-en-Provence",
+    "Clermont-Ferrand",
+    "Brest",
+    "Limoges",
+    "Tours",
+    "Amiens",
+    "Metz",
+    "Perpignan",
+    "Besançon",
+    "Orléans",
+    "Mulhouse",
+    "Rouen",
+    "Caen",
+    "Nancy",
+    "Saint-Paul",
+    "Avignon",
+    "Poitiers",
+    "Albi",
+    "Cannes",
+    "Ajaccio",
+    "Versailles",
+    "Pau",
+    "Colmar",
+    "La Rochelle",
+    "Valence",
+    "Saint-Nazaire",
+    "Calais",
+    "Dunkerque",
+    "Béziers",
+    "Tarbes",
+    "Bourges",
+    "Nevers",
+    "Carcassonne",
+    "Mâcon",
+    "Vannes",
+    "Bayonne",
+    "Évreux",
+    "Chartres",
+    "Quimper",
+    "Troyes",
+    "Lorient",
+    "Cherbourg",
+    "Niort",
+    "Arras",
+    "Auxerre",
+    "Mende",
+    "Bar-le-Duc",
+    "Sarreguemines",
+    "Guéret",
+    "Périgueux",
+    "Langres",
+    "Tulle",
+    "Moulins",
+    "Vesoul",
+    "Châlons-en-Champagne",
+    "Roanne",
+    "Château-Thierry",
+    "Saint-Lô",
+    "Rethel",
+    "Coutances",
+    "Bernay",
+    "Lisieux",
+    "Vire",
+    "Argentan",
+    "Flers",
+    "Mortagne-au-Perche",
+    "Montmorency",
+    "Montsouris",
+    "Montreuil",
+    "Montrouge",
+    "Abbeville",
+    "Agen",
+    "Aix-les-Bains",
+    "Albertville",
+    "Alençon",
+    "Alès",
+    "Annecy",
+    "Antibes",
+    "Arcachon",
+    "Arles",
+    "Auch",
+    "Aurillac",
+    "Barcelonnette",
+    "Bastogne",
+    "Bayeux",
+    "Beauvais",
+    "Belfort",
+    "Bergerac",
+    "Blois",
+    "Bourgoin-Jallieu",
+    "Brive-la-Gaillarde",
+    "Cahors",
+    "Cambrai",
+    "Castres",
+    "Chalon-sur-Saône",
+    "Chambéry",
+    "Charleville-Mézières",
+    "Châteauroux",
+    "Châtellerault",
+    "Chaumont",
+    "Cherbourg-Octeville",
+    "Cholet",
+    "Compiègne",
+    "Corte",
+    "Dax",
+    "Dieppe",
+    "Dinan",
+    "Dole",
+    "Douai",
+    "Draguignan",
+    "Dreux",
+    "Épinal",
+    "Évry",
+    "Foix",
+    "Fontainebleau",
+    "Gap",
+    "Graulhet",
+    "Haguenau",
+    "Hyères",
+    "Issoire",
+    "Istres",
+    "La Baule-Escoublac",
+    "La Flèche",
+    "La Roche-sur-Yon",
+    "La Seyne-sur-Mer",
+    "Laval",
+    "Le Blanc-Mesnil",
+    "Le Puy-en-Velay",
+    "Lens",
+    "Libourne",
+    "Longjumeau",
+    "Lourdes",
+    "Meaux",
+    "Melun",
+    "Millau",
+    "Mirecourt",
+    "Modane",
+    "Mont-de-Marsan",
+    "Montargis",
+    "Montauban",
+    "Montbéliard",
+    "Montbrison",
+    "Montluçon",
+    "Morlaix",
+    "Narbonne",
+    "Nogent-sur-Marne",
+    "Nyons",
+    "Pamiers",
+    "Pontarlier",
+    "Pontivy",
+    "Pontoise",
+    "Rochefort",
+    "Romans-sur-Isère",
+    "Roubaix",
+    "Saint-Brieuc",
+    "Saint-Chamond",
+    "Saint-Dizier",
+    "Saint-Flour",
+    "Saint-Jean-de-Maurienne",
+    "Saint-Malo",
+    "Saint-Omer",
+    "Saint-Quentin",
+    "Saint-Raphaël",
+    "Saint-Tropez",
+    "Salon-de-Provence",
+    "Sarcelles",
+    "Sarlat-la-Canéda",
+    "Sarrebourg",
+    "Saverne",
+    "Sens",
+    "Soissons",
+    "Thiers",
+    "Thionville",
+    "Thonon-les-Bains",
+    "Toul",
+    "Tourcoing",
+    "Ussel",
+    "Valenciennes",
+    "Verdun",
+    "Vichy",
+    "Vienne",
+    "Villefranche-sur-Saône",
+    "Villeneuve-sur-Lot",
+    "Vitré",
+    "Vitry-le-François",
+    "Voiron",
+    "Yssingeaux",
+    "Yvetot",
+    "Aire-sur-Adour",
+    "Ax-les-Thermes",
+    "Tarascon-sur-Ariège",
+    "Saint-Girons",
+    "Mas-d'Agenais",
+    "Penne-d'Agenais",
+    "Castelmoron-d'Albret",
+    "Nérac",
+    "Aiguillon",
+    "Tonneins",
+    "Mézin",
+    "Casteljaloux",
+    "Marmande",
+    "Houeillès",
+    "Villeton",
+    "Arzens",
+    "Trèbes",
+    "Lézignan-Corbières",
+    "Limoux",
+    "Castelnaudary",
+    "Quillan",
+    "Chalamont",
+    "Bellegarde-sur-Valserine",
+    "Bagnères-de-Bigorre",
+    "Saint-Gaudens",
+    "Gaillac",
+    "Mazamet",
+    "Saint-Pons-de-Thomières",
+    "Sète",
+    "Angoulême",
+    "Cognac",
+    "Saintes",
+    "Saint-Jean-d'Angély",
+    "Confolens",
+    "Chambon-sur-Voueize",
+    "Boussac",
+    "La Souterraine",
+    "Figeac",
+    "Moissac",
+    "Castelsarrasin",
+    "Villemur-sur-Tarn",
+    "Fronton",
+    "Condom",
+    "Fleurance",
+    "Saint-Clar",
+    "Marciac",
+    "Nogaro",
+    "Riscle",
+    "Montréal",
+    "Lavardens",
+    "Samatan",
+    "Lombez",
+    "Mirande",
+    "L'Isle-Jourdain",
+    "Gimont",
+    "Oloron-Sainte-Marie",
+    "Orthez",
+    "Salies-de-Béarn",
+    "Navarrenx",
+    "Lembeye",
+    "Saint-Jean-Pied-de-Port",
+    "Hasparren",
+    "Cambo-les-Bains",
+    "Larressore",
+    "Louhossoa",
+    "Itxassou",
+    "Ustaritz",
+    "Biarritz",
+    "Anglet",
+    "Hendaye",
+    "Ascain",
+    "Ainhoa",
+    "Saint-Pée-sur-Nivelle",
+    "Sare",
+    "Hagetmau",
+    "Saint-Sever",
+    "Saint-Paul-lès-Dax",
+    "Labrit",
+    "Mimizan",
+    "Soustons",
+    "Moliets-et-Maa",
+    "Castets",
+    "Lit-et-Mixe",
+    "Magescq",
+    "Vielle-Saint-Girons",
+    "Gastes",
+    "Bias",
+    "Parentis-en-Born",
+    "Archachon",
+    "Gujan-Mestras",
+    "Belin-Béliet",
+    "Pauillac",
+    "Saint-Julien-Beychevelle",
+    "Castelnau-de-Médoc",
+    "Talence",
+    "Pessac",
+    "Mérignac",
+    "Lacanau-Océan",
+    "Carbon-Blanc",
+    "Cenon",
+    "Floirac",
+    "Villenave-d'Ornon",
+    "Eysines",
+    "Blanquefort",
+    "Macau",
+    "Ludon-Médoc",
+    "Saint-Médard-en-Jalles",
+    "Andernos-les-Bains",
+    "Audenge",
+    "Arès",
+    "Lège-Cap-Ferret",
+    "Biganos",
+    "Saint-Symphorien",
+    "Pyla-sur-Mer",
+    "Cazaux",
+    "Sabres",
+    "Luxey",
+    "Labouheyre",
+    "Sore",
+    "Saint-Julien-en-Born",
+    "Boulogne-Billancourt",
+    "Neuilly-sur-Seine",
+    "Levallois-Perret",
+    "Clichy",
+    "Courbevoie",
+    "Issy-les-Moulineaux",
+    "Vanves",
+    "Malakoff",
+    "Ivry-sur-Seine",
+    "Vitry-sur-Seine",
+    "Laon",
+    "Boulogne-sur-Mer",
+    "Armentières",
+    "Péronne",
+    "Creil",
+    "Senlis",
+    "Noyon",
+    "Épernay",
+    "Châlons-sur-Marne",
+    "Sedan",
+    "Romilly-sur-Seine",
+    "Nogent-sur-Seine",
+    "Joigny",
+    "Avallon",
+    "Tonnerre",
+    "Beaune",
+    "Bourg-en-Bresse",
+    "Lons-le-Saunier",
+    "Bron",
+    "Vénissieux",
+    "Saint-Priest",
+    "Givors",
+    "Riom",
+    "Moulin",
+    "Briançon",
+    "Évian-les-Bains",
+    "Tarare",
+    "L'Arbresle",
+    "Ain",
+    "Bresse",
+    "Dombes",
+    "Domaine-de-Boneval",
+    "Ardèche",
+    "Privas",
+    "Annonay",
+    "Tournon",
+    "Aubenas",
+    "Drome",
+    "Drôme-Provençale",
+    "Brignoles",
+    "Grasse",
+    "Fréjus",
+    "Provence",
+    "Aubagne",
+    "Martigues",
+    "La Ciotat",
+    "Marignane",
+    "Gardanne",
+    "Cavaillon",
+    "Orange",
+    "Carpentras",
+    "Vaison-la-Romaine",
+    "Isle-sur-la-Sorgue",
+    "Pernes-les-Fontaines",
+    "Bollène",
+    "Frejus",
+    "Toulon-Hyères",
+    "Digne-les-Bains",
+    "Sisteron",
+    "Menton",
+    "Villefranche-sur-Mer",
+    "Antibes-Juan-les-Pins",
+    "Vallauris",
+    "Mougins",
+    "Valbonne",
+    "Biot",
+    "Cagnes-sur-Mer",
+    "Saint-Laurent-du-Var",
+    "Vence",
+    "Rodez",
+    "Aveyron",
+    "Lozère",
+    "Florac",
+    "Languedoc",
+    "Occitanie",
+    "Pyrenees",
+    "Labourd",
+    "Soule",
+    "Béarn",
+    "Vendée",
+    "Les Sables-d'Olonne",
+    "Saint-Gilles-Croix-de-Vie",
+    "Beauvoir-sur-Mer",
+    "Noirmoutier",
+    "Île-de-Ré",
+    "Île-d'Oléron",
+    "Île-d'Aix",
+    "Jarnac",
+    "Barbezieux",
+    "Charente",
+    "Charentes-Maritimes",
+    "Deux-Sèvres",
+    "Haute-Vienne",
+    "Creuse",
+    "Corrèze",
+    "Dordogne",
+    "Girone",
+    "Lot",
+    "Souillac",
+    "Lot-et-Garonne",
+    "Gascogne",
+    "Guyenne",
+    "Médoc",
+    "Aquitaine",
+    "Bassin-d'Arcachon",
+    "Gironde",
+    "Landes",
+    "Pyrénées-Atlantiques",
+    "Hautes-Pyrénées",
+    "Tarn",
+    "Tarn-et-Garonne",
+    "Roussillon",
+    "Pont-du-Gard",
+    "Uzès",
+    "Tarascon",
+    "Beaucaire",
+    "Villeneuve-lès-Avignon",
+    "L'Isle-sur-la-Sorgue",
+    "Saint-Rémy-de-Provence",
+    "Les-Baux-de-Provence",
+    "Fos-sur-Mer",
+    "Port-Saint-Louis",
+    "Brittany",
+    "Bretagne",
+    "Finistère",
+    "Côtes-d'Armor",
+    "Ille-et-Vilaine",
+    "Morbihan",
+    "Lannion",
+    "Douarnenez",
+    "Concarneau",
+    "Roscoff",
+    "Crozon",
+    "Carnac",
+    "Belle-Île",
+    "Île-de-Groix",
+    "Île-aux-Moines",
+    "Locmariaquer",
+    "La Baule",
+    "Guérande",
+    "Pornic",
+    "Ancenis",
+    "Carquefou",
+    "Saint-Herblain",
+    "Rezé",
+    "Saint-Sébastien-sur-Loire",
+    "Couëron",
+    "Saint-Philbert",
+    "Paulx",
+    "Loire-Atlantique",
+    "Maine-et-Loire",
+    "Mayenne",
+    "Sarthe",
+    "Pays-de-la-Loire",
+    "Sablé-sur-Sarthe",
+    "Château-Gontier",
+    "Craon",
+    "Normandie",
+    "Seine-Maritime",
+    "Eure",
+    "Calvados",
+    "Manche",
+    "Orne",
+    "Honfleur",
+    "Deauville",
+    "Trouville",
+    "Cabourg",
+    "Fécamp",
+    "Étretat",
+    "Neufchâtel-en-Bray",
+    "Forges-les-Eaux",
+    "Mortain",
+    "Granville",
+    "Avranches",
+    "Jonquière",
+    "Valognes",
+    "Saint-Vaast-la-Hougue",
+    "Barfleur",
+    "La Hague",
+    "Île-de-France",
+    "Seine-et-Marne",
+    "Yvelines",
+    "Essonne",
+    "Hauts-de-Seine",
+    "Seine-Saint-Denis",
+    "Val-de-Marne",
+    "Val-d'Oise",
+    "Provins",
+    "Montereau-Fault-Yonne",
+    "Saint-Germain-en-Laye",
+    "Rambouillet",
+    "Étampes",
+    "Corbeil-Essonnes",
+    "Palaiseau",
+    "Orsay",
+    "Saclay",
+    "Saint-Cloud",
+    "Sèvres",
+    "Meudon",
+    "Clamart",
+    "Fontenay-aux-Roses",
+    "Bagneux",
+    "Sceaux",
+    "Antony",
+    "Châtillon",
+    "Chaville",
+    "Vélizy-Villacoublay",
+    "Saint-Quentin-en-Yvelines",
+    "Montigny-le-Bretonneux",
+    "Guyancourt",
+    "Trappes",
+    "La Verrière",
+    "Élancourt",
+    "Le Plessis-Robinson",
+    "Villebon-sur-Yvette",
+    "Gif-sur-Yvette",
+    "Bures-sur-Yvette",
+    "Chevreuse",
+    "Dourdan",
+    "Ablis",
+    "Maintenon",
+    "Nogent-le-Rotrou",
+    "Authon-du-Perche",
+    "Châteaudun",
+    "Loir-et-Cher",
+    "Vendôme",
+    "Romorantin-Lanthenay",
+    "Contres",
+    "Thésée",
+    "Montrichard",
+    "Chenonceaux",
+    "Amboise",
+    "Château-Renault",
+    "Indre-et-Loire",
+    "Joué-lès-Tours",
+    "Saint-Cyr-sur-Loire",
+    "Luynes",
+    "Azay-le-Rideau",
+    "Chinon",
+    "Langeais",
+    "Bourgueil",
+    "Saint-Nicolas-de-Bourgueil",
+    "Ingrandes-de-Touraine",
+    "Chalonnes-sur-Loire",
+    "Saint-Philbert-de-Grand-Lieu",
+    "Orvault",
+    "Vieillevigne",
+    "VigneLe",
+    "Derval",
+    "Ancenis-Saint-Géréon",
+    "Oudon",
+    "Ligré",
+    "Drain",
+    "Couffé",
+    "Saint-Julien-de-Vouvantes",
+    "Moulay",
+    "Varades",
+    "Provence-Alpes-Côte-d'Azur",
+    "Paca",
+    "Alpes-Maritimes",
+    "Alpes-de-Haute-Provence",
+    "Hautes-Alpes",
+    "Var",
+    "Vaucluse",
+    "Boscastel",
+    "Beaulieu-sur-Mer",
+    "Èze",
+    "Le Cannet",
+    "Théoule-sur-Mer",
+    "Estérel",
+    "Nouvelle-Aquitaine",
+    "Limousin",
+    "Poitou-Charentes",
+    "Ramatuelle",
+    "Cavalaire-sur-Mer",
+    "Sainte-Maxime",
+    "Îles d'Hyères",
+    "Porquerolles",
+    "Port-Cros",
+    "Le Lavandou",
+    "Bormes-les-Mimosas",
+    "Mandelieu-la-Napoule",
+    "Golfe-Juan",
+    "Vallauris-Golfe-Juan",
+    "Saint-Paul-de-Vence",
+    "Villeneuve-Loubet",
+    "Roquefort-les-Pins",
+    "Peymeinade",
+    "Escragnolles",
+    "Courmes",
+    "Tourrettes-sur-Loup",
+    "Bagnères-de-Luchon",
+    "Barèges",
+    "Cauterets",
+    "Gavarnie",
+    "Luz-Saint-Sauveur",
+    "Aurinville",
+    "Braunwald",
+    "Chamonix-Mont-Blanc",
+    "Megève",
+    "Saint-Gervais-les-Bains",
+    "Morzine",
+    "Avoriaz",
+    "Les Carroz-d'Arâches",
+    "Flaine",
+    "Contamines-Montjoie",
+    "Montmin",
+    "Combloux",
+    "Passy",
+    "Saint-Nicolas-de-Véroce",
+    "Vallorcine",
+    "Trémorginne",
+    "Martigny",
+    "Annemasse",
+    "Bonneville",
+    "Cluses",
+    "Taninges",
+    "Morzine-Avoriaz",
+    "Samoëns",
+    "Sixt-Fer-à-Cheval",
+    "Morges",
+    "Montreux",
+    "Vevey",
+    "Villeneuve",
+    "Aigle",
+    "Yvoire",
+    "Thonon-Les-Bains",
+    "Abondance",
+    "Châtel",
+    "La Chapelle-d'Abondance",
+    "Montriond",
+    "Thollon-les-Mémises",
+    "Saint-Jean-d'Aulps",
+    "Valéry-sur-Somme",
+    "Fort-Mahon-Plage",
+    "Agay",
+    "Saint-Aygulf",
+    "Sainte-Raphaële",
+    "La Napoule",
+    "Châteauneuf-Grasse",
+    "Pégomas",
+    "Saint-Cézaire-sur-Siagne",
+    "Cabris",
+    "Spéracèdes",
+    "Tanneron",
+    "Mons",
+    "Bar-sur-Loup",
+    "Gourdon",
+    "Cipières",
+    "Sigale",
+    "Contes",
+    "L'Escarène",
+    "Levens",
+    "Lucéram",
+    "Lantosque",
+    "Saint-Étienne-de-Tinée",
+    "Isola",
+    "Auron",
+    "Saint-Dalmas-le-Selvage",
+    "Jausiers",
+    "Saint-Paul-sur-Ubaye",
+    "Pra-Loup",
+    "Pont-de-Blaise",
+    "Chatelard",
+    "Sospel",
+    "Breil-sur-Roya",
+    "Tende",
+    "La Brigue",
+    "Fontan",
+    "Saorge",
+    "Saint-Martin-Vésubie",
+    "Venanson",
+    "Saint-Jean-la-Rivière",
+    "Belvédère",
+    "Villars-d'Héria",
+    "Morez",
+    "Prénovel",
+    "Doucier",
+    "Clairvaux-les-Lacs",
+    "Chalain",
+    "Camping-le-Chalain",
+    "Pirajoux",
+    "Nangy",
+    "Thoiry",
+    "Seytroux",
+    "Saint-Cergues",
+    "Lugrin",
+    "Amphion-les-Bains",
+    "Publier",
+    "Argenteuil",
+    "Aulnay-sous-Bois",
+    "Belfort",
+    "Bobigny",
+    "Bondy",
+    "Colombes",
+    "Créteil",
+    "Gonesse",
+    "Lagny-sur-Marne",
+    "Le Chesnay",
+    "Le Kremlin-Bicêtre",
+    "Meulan",
+    "Montfermeil",
+    "Nanterre",
+    "Saint-Mandé",
+    "Sainte-Geneviève-des-Bois",
+    "Suresnes",
+    "Villeneuve-Saint-Georges",
+    "Vincennes",
+    "Wasquehal"
+  ],
+  "postalCodes": [
+    {
+      "code": "75001",
+      "city": "Paris 1er"
+    },
+    {
+      "code": "75002",
+      "city": "Paris 2e"
+    },
+    {
+      "code": "75003",
+      "city": "Paris 3e"
+    },
+    {
+      "code": "75004",
+      "city": "Paris 4e"
+    },
+    {
+      "code": "75005",
+      "city": "Paris 5e"
+    },
+    {
+      "code": "75006",
+      "city": "Paris 6e"
+    },
+    {
+      "code": "75007",
+      "city": "Paris 7e"
+    },
+    {
+      "code": "75008",
+      "city": "Paris 8e"
+    },
+    {
+      "code": "75009",
+      "city": "Paris 9e"
+    },
+    {
+      "code": "75010",
+      "city": "Paris 10e"
+    },
+    {
+      "code": "75011",
+      "city": "Paris 11e"
+    },
+    {
+      "code": "75012",
+      "city": "Paris 12e"
+    },
+    {
+      "code": "75013",
+      "city": "Paris 13e"
+    },
+    {
+      "code": "75014",
+      "city": "Paris 14e"
+    },
+    {
+      "code": "75015",
+      "city": "Paris 15e"
+    },
+    {
+      "code": "75016",
+      "city": "Paris 16e"
+    },
+    {
+      "code": "75017",
+      "city": "Paris 17e"
+    },
+    {
+      "code": "75018",
+      "city": "Paris 18e"
+    },
+    {
+      "code": "75019",
+      "city": "Paris 19e"
+    },
+    {
+      "code": "75020",
+      "city": "Paris 20e"
+    },
+    {
+      "code": "92000",
+      "city": "Nanterre"
+    },
+    {
+      "code": "92100",
+      "city": "Boulogne-Billancourt"
+    },
+    {
+      "code": "92200",
+      "city": "Neuilly-sur-Seine"
+    },
+    {
+      "code": "92300",
+      "city": "Levallois-Perret"
+    },
+    {
+      "code": "92400",
+      "city": "Courbevoie"
+    },
+    {
+      "code": "92500",
+      "city": "Rueil-Malmaison"
+    },
+    {
+      "code": "92600",
+      "city": "Asnières-sur-Seine"
+    },
+    {
+      "code": "92700",
+      "city": "Colombes"
+    },
+    {
+      "code": "92800",
+      "city": "Puteaux"
+    },
+    {
+      "code": "93000",
+      "city": "Bobigny"
+    },
+    {
+      "code": "93100",
+      "city": "Montreuil"
+    },
+    {
+      "code": "93200",
+      "city": "Saint-Denis"
+    },
+    {
+      "code": "93300",
+      "city": "Aubervilliers"
+    },
+    {
+      "code": "93400",
+      "city": "Saint-Ouen"
+    },
+    {
+      "code": "93500",
+      "city": "Pantin"
+    },
+    {
+      "code": "93600",
+      "city": "Aulnay-sous-Bois"
+    },
+    {
+      "code": "93700",
+      "city": "Drancy"
+    },
+    {
+      "code": "93800",
+      "city": "Épinay-sur-Seine"
+    },
+    {
+      "code": "94000",
+      "city": "Créteil"
+    },
+    {
+      "code": "94100",
+      "city": "Saint-Maur-des-Fossés"
+    },
+    {
+      "code": "94200",
+      "city": "Ivry-sur-Seine"
+    },
+    {
+      "code": "94300",
+      "city": "Vincennes"
+    },
+    {
+      "code": "94400",
+      "city": "Vitry-sur-Seine"
+    },
+    {
+      "code": "94500",
+      "city": "Champigny-sur-Marne"
+    },
+    {
+      "code": "95000",
+      "city": "Cergy"
+    },
+    {
+      "code": "95100",
+      "city": "Argenteuil"
+    },
+    {
+      "code": "95200",
+      "city": "Sarcelles"
+    },
+    {
+      "code": "95300",
+      "city": "Pontoise"
+    },
+    {
+      "code": "95400",
+      "city": "Villiers-le-Bel"
+    },
+    {
+      "code": "95500",
+      "city": "Gonesse"
+    },
+    {
+      "code": "13001",
+      "city": "Marseille 1er"
+    },
+    {
+      "code": "13002",
+      "city": "Marseille 2e"
+    },
+    {
+      "code": "13003",
+      "city": "Marseille 3e"
+    },
+    {
+      "code": "13004",
+      "city": "Marseille 4e"
+    },
+    {
+      "code": "13005",
+      "city": "Marseille 5e"
+    },
+    {
+      "code": "13006",
+      "city": "Marseille 6e"
+    },
+    {
+      "code": "13007",
+      "city": "Marseille 7e"
+    },
+    {
+      "code": "13008",
+      "city": "Marseille 8e"
+    },
+    {
+      "code": "13009",
+      "city": "Marseille 9e"
+    },
+    {
+      "code": "13010",
+      "city": "Marseille 10e"
+    },
+    {
+      "code": "13011",
+      "city": "Marseille 11e"
+    },
+    {
+      "code": "13012",
+      "city": "Marseille 12e"
+    },
+    {
+      "code": "13013",
+      "city": "Marseille 13e"
+    },
+    {
+      "code": "13014",
+      "city": "Marseille 14e"
+    },
+    {
+      "code": "13015",
+      "city": "Marseille 15e"
+    },
+    {
+      "code": "13016",
+      "city": "Marseille 16e"
+    },
+    {
+      "code": "69001",
+      "city": "Lyon 1er"
+    },
+    {
+      "code": "69002",
+      "city": "Lyon 2e"
+    },
+    {
+      "code": "69003",
+      "city": "Lyon 3e"
+    },
+    {
+      "code": "69004",
+      "city": "Lyon 4e"
+    },
+    {
+      "code": "69005",
+      "city": "Lyon 5e"
+    },
+    {
+      "code": "69006",
+      "city": "Lyon 6e"
+    },
+    {
+      "code": "69007",
+      "city": "Lyon 7e"
+    },
+    {
+      "code": "69008",
+      "city": "Lyon 8e"
+    },
+    {
+      "code": "69009",
+      "city": "Lyon 9e"
+    },
+    {
+      "code": "31000",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31100",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31200",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31300",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31400",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31500",
+      "city": "Toulouse"
+    },
+    {
+      "code": "33000",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33100",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33200",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33300",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33400",
+      "city": "Talence"
+    },
+    {
+      "code": "33500",
+      "city": "Libourne"
+    },
+    {
+      "code": "59000",
+      "city": "Lille"
+    },
+    {
+      "code": "59100",
+      "city": "Roubaix"
+    },
+    {
+      "code": "59200",
+      "city": "Tourcoing"
+    },
+    {
+      "code": "59300",
+      "city": "Valenciennes"
+    },
+    {
+      "code": "59400",
+      "city": "Cambrai"
+    },
+    {
+      "code": "59500",
+      "city": "Douai"
+    },
+    {
+      "code": "44000",
+      "city": "Nantes"
+    },
+    {
+      "code": "44100",
+      "city": "Nantes"
+    },
+    {
+      "code": "44200",
+      "city": "Nantes"
+    },
+    {
+      "code": "44300",
+      "city": "Nantes"
+    },
+    {
+      "code": "34000",
+      "city": "Montpellier"
+    },
+    {
+      "code": "34100",
+      "city": "Montpellier"
+    },
+    {
+      "code": "34200",
+      "city": "Sète"
+    },
+    {
+      "code": "67000",
+      "city": "Strasbourg"
+    },
+    {
+      "code": "67100",
+      "city": "Strasbourg"
+    },
+    {
+      "code": "67200",
+      "city": "Strasbourg"
+    },
+    {
+      "code": "06000",
+      "city": "Nice"
+    },
+    {
+      "code": "06100",
+      "city": "Nice"
+    },
+    {
+      "code": "06200",
+      "city": "Nice"
+    },
+    {
+      "code": "06300",
+      "city": "Nice"
+    },
+    {
+      "code": "35000",
+      "city": "Rennes"
+    },
+    {
+      "code": "35100",
+      "city": "Rennes"
+    },
+    {
+      "code": "35200",
+      "city": "Rennes"
+    },
+    {
+      "code": "51000",
+      "city": "Reims"
+    },
+    {
+      "code": "51100",
+      "city": "Reims"
+    },
+    {
+      "code": "76000",
+      "city": "Rouen"
+    },
+    {
+      "code": "76100",
+      "city": "Rouen"
+    },
+    {
+      "code": "80000",
+      "city": "Amiens"
+    },
+    {
+      "code": "81000",
+      "city": "Albi"
+    },
+    {
+      "code": "82000",
+      "city": "Montauban"
+    },
+    {
+      "code": "83000",
+      "city": "Toulon"
+    },
+    {
+      "code": "83100",
+      "city": "Toulon"
+    },
+    {
+      "code": "83200",
+      "city": "Toulon"
+    },
+    {
+      "code": "84000",
+      "city": "Avignon"
+    },
+    {
+      "code": "84100",
+      "city": "Orange"
+    },
+    {
+      "code": "84200",
+      "city": "Carpentras"
+    },
+    {
+      "code": "85000",
+      "city": "La Roche-sur-Yon"
+    },
+    {
+      "code": "85100",
+      "city": "Les Sables-d'Olonne"
+    },
+    {
+      "code": "85200",
+      "city": "Fontenay-le-Comte"
+    },
+    {
+      "code": "86000",
+      "city": "Poitiers"
+    },
+    {
+      "code": "86100",
+      "city": "Châtellerault"
+    },
+    {
+      "code": "86200",
+      "city": "Loudun"
+    },
+    {
+      "code": "87000",
+      "city": "Limoges"
+    },
+    {
+      "code": "87100",
+      "city": "Limoges"
+    },
+    {
+      "code": "87200",
+      "city": "Limoges"
+    },
+    {
+      "code": "88000",
+      "city": "Épinal"
+    },
+    {
+      "code": "88100",
+      "city": "Saint-Dié-des-Vosges"
+    },
+    {
+      "code": "88200",
+      "city": "Remiremont"
+    },
+    {
+      "code": "89000",
+      "city": "Auxerre"
+    },
+    {
+      "code": "89100",
+      "city": "Sens"
+    },
+    {
+      "code": "89200",
+      "city": "Tours"
+    },
+    {
+      "code": "90000",
+      "city": "Belfort"
+    },
+    {
+      "code": "90100",
+      "city": "Delle"
+    },
+    {
+      "code": "90200",
+      "city": "Giromagny"
+    },
+    {
+      "code": "01000",
+      "city": "Bourg-en-Bresse"
+    },
+    {
+      "code": "01100",
+      "city": "Oyonnax"
+    },
+    {
+      "code": "01200",
+      "city": "Bellegarde-sur-Valserine"
+    },
+    {
+      "code": "01300",
+      "city": "Belley"
+    },
+    {
+      "code": "01400",
+      "city": "Châtillon-sur-Chalaronne"
+    },
+    {
+      "code": "01500",
+      "city": "Ambérieu-en-Bugey"
+    },
+    {
+      "code": "01600",
+      "city": "Miribel"
+    },
+    {
+      "code": "01700",
+      "city": "Nantua"
+    },
+    {
+      "code": "01800",
+      "city": "Vonnas"
+    },
+    {
+      "code": "02000",
+      "city": "Laon"
+    },
+    {
+      "code": "02100",
+      "city": "Saint-Quentin"
+    },
+    {
+      "code": "02200",
+      "city": "Soissons"
+    },
+    {
+      "code": "02300",
+      "city": "Chauny"
+    },
+    {
+      "code": "02400",
+      "city": "Château-Thierry"
+    },
+    {
+      "code": "02500",
+      "city": "Tergnier"
+    },
+    {
+      "code": "02600",
+      "city": "Villecocq"
+    },
+    {
+      "code": "02700",
+      "city": "Taisnières"
+    },
+    {
+      "code": "02800",
+      "city": "La Fère"
+    },
+    {
+      "code": "02900",
+      "city": "Guise"
+    },
+    {
+      "code": "03000",
+      "city": "Moulins"
+    },
+    {
+      "code": "03100",
+      "city": "Montluçon"
+    },
+    {
+      "code": "03200",
+      "city": "Vichy"
+    },
+    {
+      "code": "03300",
+      "city": "Commentry"
+    },
+    {
+      "code": "03400",
+      "city": "Yzeure"
+    },
+    {
+      "code": "03500",
+      "city": "Saint-Pourçain-sur-Sioule"
+    },
+    {
+      "code": "03600",
+      "city": "Commentry"
+    },
+    {
+      "code": "03700",
+      "city": "Cusset"
+    },
+    {
+      "code": "03800",
+      "city": "Gannat"
+    },
+    {
+      "code": "03900",
+      "city": "Dompierre-sur-Besbre"
+    },
+    {
+      "code": "04000",
+      "city": "Digne-les-Bains"
+    },
+    {
+      "code": "04100",
+      "city": "Manosque"
+    },
+    {
+      "code": "04200",
+      "city": "Sisteron"
+    },
+    {
+      "code": "04300",
+      "city": "Forcalquier"
+    },
+    {
+      "code": "04400",
+      "city": "Barcelonnette"
+    },
+    {
+      "code": "04500",
+      "city": "La Javie"
+    },
+    {
+      "code": "04600",
+      "city": "Château-Arnoux-Saint-Auban"
+    },
+    {
+      "code": "04700",
+      "city": "Oraison"
+    },
+    {
+      "code": "04800",
+      "city": "Gréolières"
+    },
+    {
+      "code": "04900",
+      "city": "Enchastrayes"
+    },
+    {
+      "code": "05000",
+      "city": "Gap"
+    },
+    {
+      "code": "05100",
+      "city": "Briançon"
+    },
+    {
+      "code": "05200",
+      "city": "Embrun"
+    },
+    {
+      "code": "05300",
+      "city": "Laragne-Montéglin"
+    },
+    {
+      "code": "05400",
+      "city": "Veynes"
+    },
+    {
+      "code": "05500",
+      "city": "Saint-Chaffrey"
+    },
+    {
+      "code": "05600",
+      "city": "Guillestre"
+    },
+    {
+      "code": "05700",
+      "city": "Serres"
+    },
+    {
+      "code": "05800",
+      "city": "Aspres-sur-Buëch"
+    },
+    {
+      "code": "05900",
+      "city": "Savines-le-Lac"
+    },
+    {
+      "code": "11000",
+      "city": "Carcassonne"
+    },
+    {
+      "code": "11100",
+      "city": "Narbonne"
+    },
+    {
+      "code": "11200",
+      "city": "Lézignan-Corbières"
+    },
+    {
+      "code": "11300",
+      "city": "Limoux"
+    },
+    {
+      "code": "11400",
+      "city": "Castelnaudary"
+    },
+    {
+      "code": "11500",
+      "city": "Quillan"
+    },
+    {
+      "code": "11600",
+      "city": "Saleilles"
+    },
+    {
+      "code": "11700",
+      "city": "Périllos"
+    },
+    {
+      "code": "11800",
+      "city": "Trèbes"
+    },
+    {
+      "code": "11900",
+      "city": "Saint-Estève"
+    },
+    {
+      "code": "12000",
+      "city": "Rodez"
+    },
+    {
+      "code": "12100",
+      "city": "Millau"
+    },
+    {
+      "code": "12200",
+      "city": "Villefranche-de-Rouergue"
+    },
+    {
+      "code": "12300",
+      "city": "Decazeville"
+    },
+    {
+      "code": "12400",
+      "city": "Saint-Geniez-d'Olt"
+    },
+    {
+      "code": "12500",
+      "city": "Espalion"
+    },
+    {
+      "code": "13000",
+      "city": "Marseille"
+    },
+    {
+      "code": "13100",
+      "city": "Aix-en-Provence"
+    },
+    {
+      "code": "13200",
+      "city": "Arles"
+    },
+    {
+      "code": "13300",
+      "city": "Salon-de-Provence"
+    },
+    {
+      "code": "13400",
+      "city": "Aubagne"
+    },
+    {
+      "code": "13500",
+      "city": "Martigues"
+    },
+    {
+      "code": "13600",
+      "city": "La Ciotat"
+    },
+    {
+      "code": "13700",
+      "city": "Marignane"
+    },
+    {
+      "code": "13800",
+      "city": "Istres"
+    },
+    {
+      "code": "13900",
+      "city": "Carry-le-Rouet"
+    },
+    {
+      "code": "14000",
+      "city": "Caen"
+    },
+    {
+      "code": "14100",
+      "city": "Lisieux"
+    },
+    {
+      "code": "14200",
+      "city": "Hérouville-Saint-Clair"
+    },
+    {
+      "code": "14300",
+      "city": "Caen"
+    },
+    {
+      "code": "14400",
+      "city": "Bayeux"
+    },
+    {
+      "code": "14500",
+      "city": "Vire"
+    },
+    {
+      "code": "14600",
+      "city": "Honfleur"
+    },
+    {
+      "code": "14700",
+      "city": "Falaise"
+    },
+    {
+      "code": "14800",
+      "city": "Deauville"
+    },
+    {
+      "code": "14900",
+      "city": "Douvres-la-Délivrande"
+    },
+    {
+      "code": "15000",
+      "city": "Aurillac"
+    },
+    {
+      "code": "15100",
+      "city": "Saint-Flour"
+    },
+    {
+      "code": "15200",
+      "city": "Mauriac"
+    },
+    {
+      "code": "15300",
+      "city": "Murat"
+    },
+    {
+      "code": "15400",
+      "city": "Riom-ès-Montagnes"
+    },
+    {
+      "code": "16000",
+      "city": "Angoulême"
+    },
+    {
+      "code": "16100",
+      "city": "Cognac"
+    },
+    {
+      "code": "16200",
+      "city": "Jarnac"
+    },
+    {
+      "code": "16300",
+      "city": "Barbezieux-Saint-Hilaire"
+    },
+    {
+      "code": "16400",
+      "city": "La Couronne"
+    },
+    {
+      "code": "17000",
+      "city": "La Rochelle"
+    },
+    {
+      "code": "17100",
+      "city": "Saintes"
+    },
+    {
+      "code": "17200",
+      "city": "Saint-Sulpice-d'Arnoult"
+    },
+    {
+      "code": "17300",
+      "city": "Rochefort"
+    },
+    {
+      "code": "17400",
+      "city": "Saint-Jean-d'Angély"
+    },
+    {
+      "code": "17500",
+      "city": "Jonzac"
+    },
+    {
+      "code": "17600",
+      "city": "Saint-Trojan-les-Bains"
+    },
+    {
+      "code": "17700",
+      "city": "Saint-Clément-des-Baleines"
+    },
+    {
+      "code": "18000",
+      "city": "Bourges"
+    },
+    {
+      "code": "18100",
+      "city": "Vierzon"
+    },
+    {
+      "code": "18200",
+      "city": "Charost"
+    },
+    {
+      "code": "18300",
+      "city": "Saint-Amand-Montrond"
+    },
+    {
+      "code": "19000",
+      "city": "Tulle"
+    },
+    {
+      "code": "19100",
+      "city": "Brive-la-Gaillarde"
+    },
+    {
+      "code": "19200",
+      "city": "Ussel"
+    },
+    {
+      "code": "19300",
+      "city": "Egletons"
+    },
+    {
+      "code": "19400",
+      "city": "Lapleau"
+    },
+    {
+      "code": "20000",
+      "city": "Ajaccio"
+    },
+    {
+      "code": "20100",
+      "city": "Sartène"
+    },
+    {
+      "code": "20200",
+      "city": "Bastia"
+    },
+    {
+      "code": "20300",
+      "city": "Corte"
+    },
+    {
+      "code": "21000",
+      "city": "Dijon"
+    },
+    {
+      "code": "21100",
+      "city": "Longvic"
+    },
+    {
+      "code": "21200",
+      "city": "Beaune"
+    },
+    {
+      "code": "21300",
+      "city": "Chenôve"
+    },
+    {
+      "code": "21400",
+      "city": "Chatillon"
+    },
+    {
+      "code": "21500",
+      "city": "Montbard"
+    },
+    {
+      "code": "21600",
+      "city": "Longvic"
+    },
+    {
+      "code": "21700",
+      "city": "Nuits-Saint-Georges"
+    },
+    {
+      "code": "21800",
+      "city": "Quetigny"
+    },
+    {
+      "code": "21900",
+      "city": "Joigny"
+    },
+    {
+      "code": "22000",
+      "city": "Saint-Brieuc"
+    },
+    {
+      "code": "22100",
+      "city": "Dinan"
+    },
+    {
+      "code": "22200",
+      "city": "Guingamp"
+    },
+    {
+      "code": "22300",
+      "city": "Lannion"
+    },
+    {
+      "code": "22400",
+      "city": "Lamballe"
+    },
+    {
+      "code": "22500",
+      "city": "Paimpol"
+    },
+    {
+      "code": "22600",
+      "city": "Loudeac"
+    },
+    {
+      "code": "22700",
+      "city": "Perros-Guirec"
+    },
+    {
+      "code": "22800",
+      "city": "Quintin"
+    },
+    {
+      "code": "22900",
+      "city": "Ploufragan"
+    },
+    {
+      "code": "23000",
+      "city": "Guéret"
+    },
+    {
+      "code": "23100",
+      "city": "Aubusson"
+    },
+    {
+      "code": "23200",
+      "city": "Boussac"
+    },
+    {
+      "code": "23300",
+      "city": "La Souterraine"
+    },
+    {
+      "code": "24000",
+      "city": "Périgueux"
+    },
+    {
+      "code": "24100",
+      "city": "Bergerac"
+    },
+    {
+      "code": "24200",
+      "city": "Sarlat-la-Canéda"
+    },
+    {
+      "code": "24300",
+      "city": "Nontron"
+    },
+    {
+      "code": "24400",
+      "city": "Eymet"
+    },
+    {
+      "code": "25000",
+      "city": "Besançon"
+    },
+    {
+      "code": "25100",
+      "city": "Mécire"
+    },
+    {
+      "code": "25200",
+      "city": "Montbéliard"
+    },
+    {
+      "code": "25300",
+      "city": "Doubs"
+    },
+    {
+      "code": "25400",
+      "city": "Audeux"
+    },
+    {
+      "code": "26000",
+      "city": "Valence"
+    },
+    {
+      "code": "26100",
+      "city": "Romans-sur-Isère"
+    },
+    {
+      "code": "26200",
+      "city": "Montélimar"
+    },
+    {
+      "code": "26300",
+      "city": "Saint-Jean-en-Royans"
+    },
+    {
+      "code": "26400",
+      "city": "Chabeuil"
+    },
+    {
+      "code": "27000",
+      "city": "Évreux"
+    },
+    {
+      "code": "27100",
+      "city": "Val-de-Reuil"
+    },
+    {
+      "code": "27200",
+      "city": "Vernon"
+    },
+    {
+      "code": "27300",
+      "city": "Bernay"
+    },
+    {
+      "code": "27400",
+      "city": "Louviers"
+    },
+    {
+      "code": "28000",
+      "city": "Chartres"
+    },
+    {
+      "code": "28100",
+      "city": "Dreux"
+    },
+    {
+      "code": "28200",
+      "city": "Chateaudun"
+    },
+    {
+      "code": "28300",
+      "city": "Maintenon"
+    },
+    {
+      "code": "28400",
+      "city": "Nogent-le-Rotrou"
+    },
+    {
+      "code": "29000",
+      "city": "Quimper"
+    },
+    {
+      "code": "29100",
+      "city": "Douarnenez"
+    },
+    {
+      "code": "29200",
+      "city": "Brest"
+    },
+    {
+      "code": "29300",
+      "city": "Quimperlé"
+    },
+    {
+      "code": "29400",
+      "city": "Landerneau"
+    },
+    {
+      "code": "29500",
+      "city": "Gourin"
+    },
+    {
+      "code": "29600",
+      "city": "Morlaix"
+    },
+    {
+      "code": "29700",
+      "city": "Châteaulin"
+    },
+    {
+      "code": "29800",
+      "city": "Landivisiau"
+    },
+    {
+      "code": "29900",
+      "city": "Concarneau"
+    },
+    {
+      "code": "30000",
+      "city": "Nîmes"
+    },
+    {
+      "code": "30100",
+      "city": "Alès"
+    },
+    {
+      "code": "30200",
+      "city": "Bagnols-sur-Cèze"
+    },
+    {
+      "code": "30300",
+      "city": "Beaucaire"
+    },
+    {
+      "code": "30400",
+      "city": "Villeneuve-lès-Avignon"
+    },
+    {
+      "code": "30500",
+      "city": "Sommières"
+    },
+    {
+      "code": "30600",
+      "city": "Vauvert"
+    },
+    {
+      "code": "30700",
+      "city": "Uzes"
+    },
+    {
+      "code": "30800",
+      "city": "Saint-Gilles"
+    },
+    {
+      "code": "31000",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31100",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31200",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31300",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31400",
+      "city": "Toulouse"
+    },
+    {
+      "code": "31500",
+      "city": "Toulouse"
+    },
+    {
+      "code": "32000",
+      "city": "Auch"
+    },
+    {
+      "code": "32100",
+      "city": "Condom"
+    },
+    {
+      "code": "32200",
+      "city": "Gimont"
+    },
+    {
+      "code": "32300",
+      "city": "Mirande"
+    },
+    {
+      "code": "32400",
+      "city": "Nogaro"
+    },
+    {
+      "code": "32500",
+      "city": "Fleurance"
+    },
+    {
+      "code": "33000",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33100",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33200",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33300",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "33400",
+      "city": "Talence"
+    },
+    {
+      "code": "33500",
+      "city": "Libourne"
+    },
+    {
+      "code": "33600",
+      "city": "Pessac"
+    },
+    {
+      "code": "33700",
+      "city": "Mérignac"
+    },
+    {
+      "code": "33800",
+      "city": "Bordeaux"
+    },
+    {
+      "code": "34000",
+      "city": "Montpellier"
+    },
+    {
+      "code": "34100",
+      "city": "Montpellier"
+    },
+    {
+      "code": "34110",
+      "city": "Frontignan"
+    },
+    {
+      "code": "34120",
+      "city": "Pézenas"
+    },
+    {
+      "code": "34130",
+      "city": "Mauguio"
+    },
+    {
+      "code": "34140",
+      "city": "Mèze"
+    },
+    {
+      "code": "34150",
+      "city": "Gignac"
+    },
+    {
+      "code": "34160",
+      "city": "Castries"
+    },
+    {
+      "code": "34170",
+      "city": "Castelnau-le-Lez"
+    },
+    {
+      "code": "34180",
+      "city": "Hérault"
+    },
+    {
+      "code": "34190",
+      "city": "Ganges"
+    },
+    {
+      "code": "34200",
+      "city": "Sète"
+    },
+    {
+      "code": "34210",
+      "city": "Olonzac"
+    },
+    {
+      "code": "34220",
+      "city": "Saint-Pons-de-Thomières"
+    },
+    {
+      "code": "34230",
+      "city": "Le Caylar"
+    },
+    {
+      "code": "34240",
+      "city": "Pegairolles-de-l'Escalette"
+    },
+    {
+      "code": "34250",
+      "city": "Palavas-les-Flots"
+    },
+    {
+      "code": "09000",
+      "city": "Foix"
+    },
+    {
+      "code": "09110",
+      "city": "Ax-les-Thermes"
+    },
+    {
+      "code": "09200",
+      "city": "Saint-Girons"
+    },
+    {
+      "code": "09300",
+      "city": "Pamiers"
+    },
+    {
+      "code": "09400",
+      "city": "Tarascon-sur-Ariège"
+    },
+    {
+      "code": "09500",
+      "city": "Mirepoix"
+    },
+    {
+      "code": "09600",
+      "city": "Saverdun"
+    },
+    {
+      "code": "09700",
+      "city": "Savignac"
+    },
+    {
+      "code": "09800",
+      "city": "Aulus-les-Bains"
+    },
+    {
+      "code": "09900",
+      "city": "Vicdessos"
+    },
+    {
+      "code": "46000",
+      "city": "Cahors"
+    },
+    {
+      "code": "46100",
+      "city": "Figeac"
+    },
+    {
+      "code": "46200",
+      "city": "Souillac"
+    },
+    {
+      "code": "46300",
+      "city": "Rocamadour"
+    },
+    {
+      "code": "46400",
+      "city": "Saint-Céré"
+    },
+    {
+      "code": "46500",
+      "city": "Gramat"
+    },
+    {
+      "code": "46600",
+      "city": "Martel"
+    },
+    {
+      "code": "46700",
+      "city": "Mauroux"
+    },
+    {
+      "code": "46800",
+      "city": "Montcuq"
+    },
+    {
+      "code": "46900",
+      "city": "Gourdon"
+    },
+    {
+      "code": "65000",
+      "city": "Tarbes"
+    },
+    {
+      "code": "65100",
+      "city": "Lourdes"
+    },
+    {
+      "code": "65200",
+      "city": "Bagnères-de-Bigorre"
+    },
+    {
+      "code": "65300",
+      "city": "Saint-Gaudens"
+    },
+    {
+      "code": "65400",
+      "city": "Argelès-Gazost"
+    },
+    {
+      "code": "65500",
+      "city": "Vic-en-Bigorre"
+    },
+    {
+      "code": "65600",
+      "city": "Odos"
+    },
+    {
+      "code": "65700",
+      "city": "Trie-sur-Baïse"
+    },
+    {
+      "code": "65800",
+      "city": "Aureilhan"
+    },
+    {
+      "code": "65900",
+      "city": "Beaudéan"
+    },
+    {
+      "code": "81000",
+      "city": "Albi"
+    },
+    {
+      "code": "81100",
+      "city": "Castres"
+    },
+    {
+      "code": "81200",
+      "city": "Mazamet"
+    },
+    {
+      "code": "81300",
+      "city": "Graulhet"
+    },
+    {
+      "code": "81400",
+      "city": "Carmaux"
+    },
+    {
+      "code": "81500",
+      "city": "Lavaur"
+    },
+    {
+      "code": "81600",
+      "city": "Gaillac"
+    },
+    {
+      "code": "81700",
+      "city": "Cordes-sur-Ciel"
+    },
+    {
+      "code": "81800",
+      "city": "Rabastens"
+    },
+    {
+      "code": "81900",
+      "city": "Montreuil"
+    },
+    {
+      "code": "82000",
+      "city": "Montauban"
+    },
+    {
+      "code": "82100",
+      "city": "Castelsarrasin"
+    },
+    {
+      "code": "82200",
+      "city": "Moissac"
+    },
+    {
+      "code": "82300",
+      "city": "Caussade"
+    },
+    {
+      "code": "82400",
+      "city": "Saint-Antonin-Noble-Val"
+    },
+    {
+      "code": "82500",
+      "city": "Valence-d'Agen"
+    },
+    {
+      "code": "82600",
+      "city": "Verdun-sur-Garonne"
+    },
+    {
+      "code": "82700",
+      "city": "Puylagarde"
+    },
+    {
+      "code": "82800",
+      "city": "Négrepelisse"
+    },
+    {
+      "code": "82900",
+      "city": "Lauzerte"
+    },
+    {
+      "code": "84000",
+      "city": "Avignon"
+    },
+    {
+      "code": "84100",
+      "city": "Orange"
+    },
+    {
+      "code": "84200",
+      "city": "Carpentras"
+    },
+    {
+      "code": "84300",
+      "city": "Cavaillon"
+    },
+    {
+      "code": "84400",
+      "city": "Apt"
+    },
+    {
+      "code": "84500",
+      "city": "Bollène"
+    },
+    {
+      "code": "84600",
+      "city": "Richerenches"
+    },
+    {
+      "code": "84700",
+      "city": "Sorgues"
+    },
+    {
+      "code": "84800",
+      "city": "L'Isle-sur-la-Sorgue"
+    },
+    {
+      "code": "84900",
+      "city": "Uchaux"
+    },
+    {
+      "code": "40000",
+      "city": "Mont-de-Marsan"
+    },
+    {
+      "code": "40100",
+      "city": "Dax"
+    },
+    {
+      "code": "40200",
+      "city": "Mimizan"
+    },
+    {
+      "code": "40300",
+      "city": "Biscarrosse"
+    },
+    {
+      "code": "40400",
+      "city": "Tartas"
+    },
+    {
+      "code": "40500",
+      "city": "Saint-Sever"
+    },
+    {
+      "code": "40600",
+      "city": "Hagetmau"
+    },
+    {
+      "code": "40700",
+      "city": "Hastingues"
+    },
+    {
+      "code": "40800",
+      "city": "Aire-sur-Adour"
+    },
+    {
+      "code": "40800",
+      "city": "Labenne"
+    },
+    {
+      "code": "40900",
+      "city": "Parentis-en-Born"
+    },
+    {
+      "code": "47000",
+      "city": "Agen"
+    },
+    {
+      "code": "47100",
+      "city": "Marmande"
+    },
+    {
+      "code": "47200",
+      "city": "Mézin"
+    },
+    {
+      "code": "47300",
+      "city": "Nérac"
+    },
+    {
+      "code": "47400",
+      "city": "Tonneins"
+    },
+    {
+      "code": "47500",
+      "city": "Fumel"
+    },
+    {
+      "code": "47600",
+      "city": "Bon-Encontre"
+    },
+    {
+      "code": "47700",
+      "city": "Casteljaloux"
+    },
+    {
+      "code": "47800",
+      "city": "Lavardac"
+    },
+    {
+      "code": "47900",
+      "city": "Astaffort"
+    },
+    {
+      "code": "64000",
+      "city": "Pau"
+    },
+    {
+      "code": "64100",
+      "city": "Bayonne"
+    },
+    {
+      "code": "64200",
+      "city": "Biarritz"
+    },
+    {
+      "code": "64300",
+      "city": "Cambo-les-Bains"
+    },
+    {
+      "code": "64400",
+      "city": "Oloron-Sainte-Marie"
+    },
+    {
+      "code": "64500",
+      "city": "Saint-Jean-Pied-de-Port"
+    },
+    {
+      "code": "64600",
+      "city": "Anglet"
+    },
+    {
+      "code": "64700",
+      "city": "Hendaye"
+    },
+    {
+      "code": "64800",
+      "city": "Asson"
+    },
+    {
+      "code": "64900",
+      "city": "Orthez"
+    },
+    {
+      "code": "79000",
+      "city": "Niort"
+    },
+    {
+      "code": "79100",
+      "city": "Brioux-sur-Boutonne"
+    },
+    {
+      "code": "79200",
+      "city": "Parthenay"
+    },
+    {
+      "code": "79300",
+      "city": "Bressuire"
+    },
+    {
+      "code": "79400",
+      "city": "Saint-Maixent-l'École"
+    },
+    {
+      "code": "79500",
+      "city": "Melle"
+    },
+    {
+      "code": "79600",
+      "city": "Airvault"
+    },
+    {
+      "code": "79700",
+      "city": "Chef-Boutonne"
+    },
+    {
+      "code": "79800",
+      "city": "Cerizay"
+    },
+    {
+      "code": "79900",
+      "city": "Clisson"
+    },
+    {
+      "code": "86000",
+      "city": "Poitiers"
+    },
+    {
+      "code": "86100",
+      "city": "Châtellerault"
+    },
+    {
+      "code": "86200",
+      "city": "Loudun"
+    },
+    {
+      "code": "86300",
+      "city": "Montmorillon"
+    },
+    {
+      "code": "86400",
+      "city": "Civray"
+    },
+    {
+      "code": "86500",
+      "city": "Montchamp"
+    },
+    {
+      "code": "86600",
+      "city": "Savigny-Levescault"
+    },
+    {
+      "code": "86700",
+      "city": "Saint-Léger-de-Montbreton"
+    },
+    {
+      "code": "86800",
+      "city": "Saint-Julien-l'Ars"
+    },
+    {
+      "code": "86900",
+      "city": "Lencloître"
+    },
+    {
+      "code": "87000",
+      "city": "Limoges"
+    },
+    {
+      "code": "87100",
+      "city": "Limoges"
+    },
+    {
+      "code": "87200",
+      "city": "Limoges"
+    },
+    {
+      "code": "87300",
+      "city": "Saint-Léonard-de-Noblat"
+    },
+    {
+      "code": "87400",
+      "city": "Saint-Yrieix-la-Perche"
+    },
+    {
+      "code": "87500",
+      "city": "Rochechouart"
+    },
+    {
+      "code": "87600",
+      "city": "Aixe-sur-Vienne"
+    },
+    {
+      "code": "87700",
+      "city": "Saint-Auvent"
+    },
+    {
+      "code": "73100",
+      "city": "Aix-les-Bains"
+    },
+    {
+      "code": "74500",
+      "city": "Évian-les-Bains"
+    },
+    {
+      "code": "74200",
+      "city": "Thonon-les-Bains"
+    },
+    {
+      "code": "06500",
+      "city": "Menton"
+    },
+    {
+      "code": "06230",
+      "city": "Villefranche-sur-Mer"
+    },
+    {
+      "code": "06310",
+      "city": "Beaulieu-sur-Mer"
+    },
+    {
+      "code": "83990",
+      "city": "Saint-Tropez"
+    },
+    {
+      "code": "83350",
+      "city": "Ramatuelle"
+    },
+    {
+      "code": "83240",
+      "city": "Cavalaire-sur-Mer"
+    },
+    {
+      "code": "83120",
+      "city": "Sainte-Maxime"
+    },
+    {
+      "code": "83400",
+      "city": "Îles d'Hyères"
+    },
+    {
+      "code": "83250",
+      "city": "Le Lavandou"
+    },
+    {
+      "code": "83230",
+      "city": "Bormes-les-Mimosas"
+    },
+    {
+      "code": "83700",
+      "city": "Saint-Raphaël"
+    },
+    {
+      "code": "83600",
+      "city": "Fréjus"
+    },
+    {
+      "code": "06210",
+      "city": "Mandelieu-la-Napoule"
+    },
+    {
+      "code": "06220",
+      "city": "Vallauris"
+    },
+    {
+      "code": "06160",
+      "city": "Cagnes-sur-Mer"
+    },
+    {
+      "code": "06700",
+      "city": "Saint-Laurent-du-Var"
+    },
+    {
+      "code": "06270",
+      "city": "Villeneuve-Loubet"
+    },
+    {
+      "code": "06530",
+      "city": "Peymeinade"
+    },
+    {
+      "code": "06390",
+      "city": "Coaraze"
+    },
+    {
+      "code": "06260",
+      "city": "Puget-Théniers"
+    },
+    {
+      "code": "31110",
+      "city": "Bagnères-de-Luchon"
+    },
+    {
+      "code": "65200",
+      "city": "Bagnères-de-Bigorre"
+    },
+    {
+      "code": "65400",
+      "city": "Argelès-Gazost"
+    },
+    {
+      "code": "74400",
+      "city": "Chamonix-Mont-Blanc"
+    },
+    {
+      "code": "74120",
+      "city": "Megève"
+    },
+    {
+      "code": "74170",
+      "city": "Saint-Gervais-les-Bains"
+    },
+    {
+      "code": "74110",
+      "city": "Morzine"
+    },
+    {
+      "code": "74260",
+      "city": "Les Gets"
+    },
+    {
+      "code": "74300",
+      "city": "Cluses"
+    },
+    {
+      "code": "74720",
+      "city": "Abondance"
+    },
+    {
+      "code": "74390",
+      "city": "Châtel"
+    },
+    {
+      "code": "74360",
+      "city": "La Chapelle-d'Abondance"
+    },
+    {
+      "code": "74550",
+      "city": "Saint-Jean-d'Aulps"
+    },
+    {
+      "code": "74430",
+      "city": "Saint-Gervais-les-Bains"
+    },
+    {
+      "code": "80460",
+      "city": "Valéry-sur-Somme"
+    },
+    {
+      "code": "80120",
+      "city": "Fort-Mahon-Plage"
+    },
+    {
+      "code": "83140",
+      "city": "Six-Fours-les-Plages"
+    },
+    {
+      "code": "06530",
+      "city": "Mougins"
+    },
+    {
+      "code": "06520",
+      "city": "Grasse"
+    },
+    {
+      "code": "06570",
+      "city": "Saint-Paul-de-Vence"
+    },
+    {
+      "code": "06140",
+      "city": "Vence"
+    }
+  ]
+}
