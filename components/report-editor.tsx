@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createEmptyReport } from "@/lib/templates";
 import { sanitizeReportDraft } from "@/lib/report-builder";
 import { ReportRecord, ReportMode } from "@/lib/types";
@@ -34,6 +35,7 @@ export function ReportEditor({
   const [savedMessage, setSavedMessage] = useState("");
   const [globalPaste, setGlobalPaste] = useState("");
   const [dispatchMessage, setDispatchMessage] = useState("");
+  const router = useRouter();
 
   const isEditMode = persistMode === "edit";
   const safeDraft = useMemo(() => sanitizeReportDraft(draft), [draft]);
@@ -108,7 +110,16 @@ export function ReportEditor({
     }
 
     const data = (await response.json()) as { report: ReportRecord };
-    setDraft(data.report);
+    const safeReport = sanitizeReportDraft(data.report);
+    setDraft(safeReport);
+
+    if (!isEditMode && safeReport.id) {
+      setSavedMessage("Rapport enregistre. Ouverture du studio complet...");
+      setSaving(false);
+      router.push(`/reports/${safeReport.id}/edit`);
+      return;
+    }
+
     setSavedMessage(isEditMode ? "Rapport mis à jour." : "Rapport enregistré.");
     setSaving(false);
   }
@@ -137,7 +148,30 @@ export function ReportEditor({
     }
   }
 
-  const pdfUrl = safeDraft.id ? `/api/reports/${safeDraft.id}/pdf` : "#";
+  async function openEditorialPdfFromDraft() {
+    setSavedMessage("");
+    try {
+      const response = await fetch("/api/reports/preview-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(safeDraft)
+      });
+
+      if (!response.ok) {
+        setSavedMessage("Impossible de generer le PDF.");
+        return;
+      }
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      window.open(objectUrl, "_blank", "noopener,noreferrer");
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000);
+      setSavedMessage("PDF genere.");
+    } catch {
+      setSavedMessage("Impossible de generer le PDF.");
+    }
+  }
+
   const technicalLabel = safeDraft.mode === "compatibility" ? "pdf tech. 2" : "pdf tech. 1";
   const previewToggleLabel = tab === "preview" ? "Revenir à l’édition" : "Voir l’aperçu premium";
 
@@ -156,9 +190,9 @@ export function ReportEditor({
         </button>
         {safeDraft.id ? (
           <>
-            <a className="button-ghost" href={pdfUrl} target="_blank" rel="noreferrer">
+            <button className="button-ghost" type="button" onClick={() => void openEditorialPdfFromDraft()}>
               Télécharger le PDF
-            </a>
+            </button>
             <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromDraft()}>
               {technicalLabel}
             </button>
