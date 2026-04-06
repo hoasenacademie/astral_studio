@@ -17,7 +17,7 @@ import { EnhancedInput } from "@/components/enhanced-input";
 
 const previewTabs = [
   { key: "editor", label: "Édition" },
-  { key: "preview", label: "Aperçu premium" }
+  { key: "preview", label: "APERCU" }
 ] as const;
 
 export function ReportEditor({
@@ -32,6 +32,8 @@ export function ReportEditor({
   const [draft, setDraft] = useState<ReportRecord>(() => sanitizeReportDraft(initialReport ?? createEmptyReport(mode)));
   const [tab, setTab] = useState<(typeof previewTabs)[number]["key"]>("editor");
   const [saving, setSaving] = useState(false);
+  const [busyPublish, setBusyPublish] = useState(false);
+  const [busyDelete, setBusyDelete] = useState(false);
   const [savedMessage, setSavedMessage] = useState("");
   const [globalPaste, setGlobalPaste] = useState("");
   const [dispatchMessage, setDispatchMessage] = useState("");
@@ -39,6 +41,7 @@ export function ReportEditor({
   const draftBackupKey = `astral:report-draft:${mode}`;
 
   const isEditMode = persistMode === "edit";
+  const [isPersisted, setIsPersisted] = useState(isEditMode);
   const safeDraft = useMemo(() => sanitizeReportDraft(draft), [draft]);
   const pointsA = useMemo(() => getChartSignaturePoints(safeDraft.parsedA), [safeDraft.parsedA]);
   const pointsB = useMemo(
@@ -129,8 +132,9 @@ export function ReportEditor({
     setSaving(true);
     setSavedMessage("");
     try {
-      const endpoint = isEditMode ? `/api/reports/${safeDraft.id}` : "/api/reports";
-      const method = isEditMode ? "PUT" : "POST";
+      const canUpdate = isEditMode || isPersisted;
+      const endpoint = canUpdate ? `/api/reports/${safeDraft.id}` : "/api/reports";
+      const method = canUpdate ? "PUT" : "POST";
       const response = await fetch(endpoint, {
         method,
         headers: { "Content-Type": "application/json" },
@@ -150,16 +154,14 @@ export function ReportEditor({
       const data = (await response.json()) as { report: ReportRecord };
       const safeReport = sanitizeReportDraft(data.report);
       setDraft(safeReport);
+      setIsPersisted(true);
 
-      if (!isEditMode && safeReport.id) {
+      if (!isEditMode && !canUpdate) {
         try {
           window.localStorage.removeItem(draftBackupKey);
         } catch {
           // Ignore local cache clean-up failures.
         }
-        setSavedMessage("Rapport enregistre. Ouverture du studio complet...");
-        router.push(`/reports/${safeReport.id}/edit`);
-        return;
       }
 
       setSavedMessage(isEditMode ? "Rapport mis à jour." : "Rapport enregistré.");
@@ -168,6 +170,62 @@ export function ReportEditor({
       setSavedMessage(`Impossible d’enregistrer pour le moment.${backupNotice}`);
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function togglePublish() {
+    if (!isPersisted || !safeDraft.id) {
+      setSavedMessage("Enregistre d'abord le rapport pour publier.");
+      return;
+    }
+
+    setBusyPublish(true);
+    setSavedMessage("");
+    const endpoint = safeDraft.share?.isPublished ? "unpublish" : "publish";
+
+    try {
+      const response = await fetch(`/api/reports/${safeDraft.id}/${endpoint}`, { method: "POST" });
+      if (!response.ok) {
+        const message = await readResponseError(response, "Action de publication indisponible.");
+        setSavedMessage(message);
+        return;
+      }
+      const data = (await response.json()) as { report: ReportRecord };
+      const next = sanitizeReportDraft(data.report);
+      setDraft(next);
+      setSavedMessage(next.share?.isPublished ? "Version mobile publiée." : "Version mobile dépubliée.");
+    } catch {
+      setSavedMessage("Action de publication indisponible.");
+    } finally {
+      setBusyPublish(false);
+    }
+  }
+
+  async function removeReport() {
+    if (!isPersisted || !safeDraft.id) {
+      setSavedMessage("Aucun rapport sauvegardé à supprimer.");
+      return;
+    }
+
+    setBusyDelete(true);
+    setSavedMessage("");
+    try {
+      const response = await fetch(`/api/reports/${safeDraft.id}`, { method: "DELETE" });
+      if (!response.ok) {
+        const message = await readResponseError(response, "Suppression impossible.");
+        setSavedMessage(message);
+        return;
+      }
+      try {
+        window.localStorage.removeItem(draftBackupKey);
+      } catch {
+        // Ignore local cache clean-up failures.
+      }
+      router.push("/dashboard");
+    } catch {
+      setSavedMessage("Suppression impossible.");
+    } finally {
+      setBusyDelete(false);
     }
   }
 
@@ -219,27 +277,45 @@ export function ReportEditor({
     }
   }
 
-  const technicalLabel = safeDraft.mode === "compatibility" ? "pdf tech. 2" : "pdf tech. 1";
-  const previewToggleLabel = tab === "preview" ? "Revenir à l’édition" : "Voir l’aperçu premium";
+  const analysisLabel = safeDraft.mode === "compatibility" ? "ANALYSE 2" : "ANALYSE 1";
+  const isPublished = Boolean(safeDraft.share?.isPublished);
+  const mobilePath = isPublished && safeDraft.share?.shareToken ? `/r/${safeDraft.share.shareToken}` : null;
+  const publishLabel = isPublished ? "DEPUBLIER" : "PUBLIER";
+  const canUseServerActions = isPersisted && Boolean(safeDraft.id);
 
   function renderCommandButtons() {
     return (
       <div className="button-row">
         <button className="button" type="button" onClick={() => void save()} disabled={saving}>
-          {saving ? "Enregistrement…" : isEditMode ? "Mettre à jour" : "Enregistrer"}
+          {saving ? "ENREGISTRER..." : "ENREGISTRER"}
+        </button>
+        <button className="button-secondary" type="button" onClick={() => void removeReport()} disabled={!canUseServerActions || busyDelete}>
+          {busyDelete ? "SUPPRIMER..." : "SUPPRIMER"}
         </button>
         <button
           className="button-secondary"
           type="button"
-          onClick={() => setTab((current) => (current === "preview" ? "editor" : "preview"))}
+          onClick={() => void togglePublish()}
+          disabled={!canUseServerActions || busyPublish}
         >
-          {previewToggleLabel}
+          {busyPublish ? `${publishLabel}...` : publishLabel}
+        </button>
+        <button className="button-ghost" type="button" onClick={() => setTab("preview")}>
+          APERCU
         </button>
         <button className="button-ghost" type="button" onClick={() => void openEditorialPdfFromDraft()}>
-          Télécharger le PDF
+          {analysisLabel}
         </button>
         <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromDraft()}>
-          {technicalLabel}
+          GPT
+        </button>
+        <button
+          className="button-ghost"
+          type="button"
+          onClick={() => mobilePath ? window.open(mobilePath, "_blank", "noopener,noreferrer") : undefined}
+          disabled={!mobilePath}
+        >
+          MOBILE
         </button>
       </div>
     );

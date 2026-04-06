@@ -108,6 +108,7 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
 
   const [busySave, setBusySave] = useState(false);
   const [busyPublish, setBusyPublish] = useState(false);
+  const [busyDelete, setBusyDelete] = useState(false);
   const [busyDuplicate, setBusyDuplicate] = useState(false);
 
   const [status, setStatus] = useState("");
@@ -581,6 +582,24 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
     }
   }
 
+  async function removeReport() {
+    setBusyDelete(true);
+    setStatus("");
+    try {
+      const response = await fetch(`/api/reports/${reportId}`, { method: "DELETE" });
+      if (!response.ok) {
+        const message = await readResponseError(response, "Suppression impossible.");
+        setStatus(message);
+        return;
+      }
+      window.location.assign("/dashboard");
+    } catch {
+      setStatus("Suppression impossible.");
+    } finally {
+      setBusyDelete(false);
+    }
+  }
+
   function updateThemeInput(field: "rawInputA" | "rawInputB", value: string) {
     if (!draft) return;
     updateDraft({
@@ -688,7 +707,8 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
   }
 
   const safeDraft = draft;
-  const technicalLabel = safeDraft.mode === "compatibility" ? "pdf tech. 2" : "pdf tech. 1";
+  const analysisLabel = safeDraft.mode === "compatibility" ? "ANALYSE 2" : "ANALYSE 1";
+  const publishLabel = safeDraft.share?.isPublished ? "DEPUBLIER" : "PUBLIER";
   const shareUrl = draft.share?.isPublished && draft.share.shareToken
     ? `/r/${draft.share.shareToken}`
     : null;
@@ -697,23 +717,33 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
     return (
       <>
         <button className="button" type="button" onClick={() => void persistDraft(safeDraft)} disabled={busySave}>
-          {busySave ? "Sauvegarde..." : "Sauvegarder"}
+          {busySave ? "ENREGISTRER..." : "ENREGISTRER"}
+        </button>
+        <button className="button-secondary" type="button" onClick={() => void removeReport()} disabled={busyDelete}>
+          {busyDelete ? "SUPPRIMER..." : "SUPPRIMER"}
         </button>
         <button className="button-secondary" type="button" onClick={() => void togglePublish()} disabled={busyPublish}>
-          {busyPublish ? "Mise a jour..." : safeDraft.share?.isPublished ? "Depublier" : "Publier"}
+          {busyPublish ? `${publishLabel}...` : publishLabel}
+        </button>
+        <Link className="button-ghost" href={`/reports/${reportId}`}>APERCU</Link>
+        <a className="button-ghost" href={`/api/reports/${reportId}/pdf?preview=1`} target="_blank" rel="noreferrer">{analysisLabel}</a>
+        <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
+          GPT
+        </button>
+        <button
+          className="button-ghost"
+          type="button"
+          onClick={() => shareUrl ? window.open(shareUrl, "_blank", "noopener,noreferrer") : undefined}
+          disabled={!shareUrl}
+        >
+          MOBILE
         </button>
         <button className="button-ghost" type="button" onClick={() => void duplicate()} disabled={busyDuplicate}>
-          {busyDuplicate ? "Duplication..." : "Dupliquer"}
+          {busyDuplicate ? "COPIE..." : "COPIE"}
         </button>
         <button className="button-ghost" type="button" onClick={() => setFullscreen((current) => !current)}>
-          {fullscreen ? "Quitter plein ecran" : "Plein ecran"}
+          {fullscreen ? "ECRAN STANDARD" : "PLEIN ECRAN"}
         </button>
-        <button className="button-secondary" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
-          {technicalLabel}
-        </button>
-        <Link className="button-ghost" href={`/reports/${reportId}`}>Voir detail</Link>
-        {shareUrl ? <a className="button-ghost" href={shareUrl} target="_blank" rel="noreferrer">Ouvrir lien mobile</a> : null}
-        <a className="button-ghost" href={`/api/reports/${reportId}/pdf?preview=1`} target="_blank" rel="noreferrer">Ouvrir PDF</a>
       </>
     );
   }
@@ -905,7 +935,7 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
 
           <div className="button-row">
             <button className="button-secondary" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
-              {technicalLabel}
+              GPT
             </button>
           </div>
         </div>

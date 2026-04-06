@@ -2,7 +2,7 @@ import path from "path";
 import { Document } from "@react-pdf/renderer";
 import { ReportRecord } from "@/lib/types";
 import { resolveEditorialLayoutPlan } from "@/lib/editorial-layout-plan";
-import { imageSourceFromAbsolute, imageSourceFromPublicPath } from "@/lib/pdf/image-source";
+import { imageSourceFromAbsolute, imageSourceFromPdfSignPath } from "@/lib/pdf/image-source";
 import { sanitizePdfText } from "@/lib/pdf/text-utils";
 import { PdfCoverPage } from "@/components/pdf/pdf-cover-page";
 import { PdfSignaturePage } from "@/components/pdf/pdf-signature-page";
@@ -70,7 +70,7 @@ export function StudioPdfDocumentPages({ report }: { report: ReportRecord }) {
               }))
             }))
           };
-          return <PdfSignaturePage key={page.key} page={safePage} imageResolver={imageSourceFromPublicPath} />;
+          return <PdfSignaturePage key={page.key} page={safePage} imageResolver={imageSourceFromPdfSignPath} />;
         }
         if (page.kind === "editorial_page") {
           const safePage = {
