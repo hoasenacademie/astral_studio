@@ -162,27 +162,27 @@ export const styles = StyleSheet.create({
   editorialPage: {
     backgroundColor: "#F7F2EC",
     color: "#181615",
-    paddingTop: 38,
-    paddingBottom: 40,
-    paddingHorizontal: 44,
+    paddingTop: 40,
+    paddingBottom: 42,
+    paddingHorizontal: 54,
     fontSize: 11,
     fontFamily: "Times-Roman"
   },
   editorialOpeningPage: {
     backgroundColor: "#F8F4EF",
     color: "#181615",
-    paddingTop: 42,
-    paddingBottom: 40,
-    paddingHorizontal: 46,
+    paddingTop: 44,
+    paddingBottom: 42,
+    paddingHorizontal: 56,
     fontSize: 11,
     fontFamily: "Times-Roman"
   },
   editorialFocusPage: {
     backgroundColor: "#F9F5F1",
     color: "#181615",
-    paddingTop: 38,
-    paddingBottom: 40,
-    paddingHorizontal: 46,
+    paddingTop: 40,
+    paddingBottom: 42,
+    paddingHorizontal: 56,
     fontSize: 11,
     fontFamily: "Times-Roman"
   },
@@ -195,99 +195,83 @@ export const styles = StyleSheet.create({
     fontSize: 10.8,
     fontFamily: "Times-Roman"
   },
+  editorialHeader: {
+    marginBottom: 8
+  },
   editorialIndex: {
     fontSize: 8.8,
     color: "#8C6A61",
     textTransform: "uppercase",
     letterSpacing: 2.1,
-    marginBottom: 8
+    marginBottom: 9
   },
   editorialTitle: {
-    fontSize: 25,
-    marginBottom: 4
+    fontSize: 26,
+    marginBottom: 5
   },
   editorialSubtitle: {
-    fontSize: 11.2,
+    fontSize: 11.1,
     color: "#6E6A67",
-    marginBottom: 16,
-    lineHeight: 1.5
+    marginBottom: 11,
+    lineHeight: 1.45
   },
-  editorialColumns: {
-    flexDirection: "row",
-    gap: 18
+  editorialDivider: {
+    borderTop: "1px solid #DDD4CC",
+    marginBottom: 8
   },
-  editorialColumn: {
-    flexGrow: 1,
-    flexBasis: 0
+  editorialLeadParagraph: {
+    fontSize: 12.1,
+    lineHeight: 1.62,
+    marginBottom: 8,
+    maxWidth: 470
   },
   editorialParagraph: {
-    fontSize: 11.4,
-    lineHeight: 1.92,
-    marginBottom: 8,
+    fontSize: 11.2,
+    lineHeight: 1.68,
+    marginBottom: 7,
+    maxWidth: 470
+  },
+  editorialMethodParagraph: {
+    fontSize: 10.9,
+    lineHeight: 1.62,
+    marginBottom: 7,
     maxWidth: 455
   },
-  editorialParagraphColumn: {
-    fontSize: 10.6,
-    lineHeight: 1.68,
-    marginBottom: 7
-  },
-  editorialAfterColumns: {
-    flexDirection: "row",
-    gap: 14,
-    marginTop: 12
-  },
   editorialQuoteBox: {
-    marginTop: 20,
-    marginBottom: 12,
-    paddingVertical: 24,
-    paddingHorizontal: 18,
+    marginTop: 16,
+    marginBottom: 10,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
     borderTop: "1px solid #D8D1CA",
-    borderBottom: "1px solid #D8D1CA"
-  },
-  editorialQuoteBoxSplit: {
-    flexGrow: 1,
-    flexBasis: 0,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
-    borderTop: "1px solid #D8D1CA",
-    borderBottom: "1px solid #D8D1CA"
+    borderBottom: "1px solid #D8D1CA",
+    alignSelf: "center",
+    width: "100%",
+    maxWidth: 500
   },
   editorialQuoteText: {
-    fontSize: 19,
+    fontSize: 17.5,
     textAlign: "center",
     fontStyle: "italic",
-    lineHeight: 1.45
-  },
-  editorialQuoteTextSplit: {
-    fontSize: 15.5,
-    textAlign: "left",
-    fontStyle: "italic",
-    lineHeight: 1.45
+    lineHeight: 1.42
   },
   editorialSignatureBox: {
-    marginTop: 16,
+    marginTop: 12,
     border: "1px solid #D8D1CA",
     backgroundColor: "rgba(255,255,255,0.62)",
-    padding: 14,
-    maxWidth: 430
-  },
-  editorialSignatureBoxSplit: {
-    flexGrow: 1,
-    flexBasis: 0,
-    border: "1px solid #D8D1CA",
-    backgroundColor: "rgba(255,255,255,0.62)",
-    padding: 10
+    paddingVertical: 12,
+    paddingHorizontal: 13,
+    maxWidth: 470
   },
   editorialSignatureLabel: {
-    fontSize: 8.5,
+    fontSize: 8.4,
     textTransform: "uppercase",
     letterSpacing: 1.4,
     color: "#8C6A61",
-    marginBottom: 8
+    marginBottom: 6
   },
   editorialSignatureText: {
-    fontSize: 11.4,
-    lineHeight: 1.7
+    fontSize: 11.1,
+    lineHeight: 1.6
   },
 
   quotePage: {
@@ -321,9 +305,9 @@ export const styles = StyleSheet.create({
   conclusionPage: {
     backgroundColor: "#F8F4EF",
     color: "#181615",
-    paddingTop: 54,
-    paddingBottom: 46,
-    paddingHorizontal: 58,
+    paddingTop: 52,
+    paddingBottom: 44,
+    paddingHorizontal: 60,
     fontSize: 11.2,
     fontFamily: "Times-Roman"
   },
@@ -341,36 +325,33 @@ export const styles = StyleSheet.create({
   conclusionSubtitle: {
     fontSize: 11.3,
     color: "#6E6A67",
-    marginBottom: 16
+    marginBottom: 10
   },
-  conclusionColumns: {
-    flexDirection: "row",
-    gap: 18
+  conclusionDivider: {
+    borderTop: "1px solid #DDD4CC",
+    marginBottom: 9
   },
-  conclusionColumn: {
-    flexGrow: 1,
-    flexBasis: 0
+  conclusionLeadParagraph: {
+    fontSize: 12,
+    lineHeight: 1.62,
+    marginBottom: 8,
+    maxWidth: 470
   },
   conclusionParagraph: {
-    fontSize: 11.6,
-    lineHeight: 1.9,
-    marginBottom: 8,
-    maxWidth: 455
-  },
-  conclusionParagraphColumn: {
-    fontSize: 10.7,
-    lineHeight: 1.72,
-    marginBottom: 7
+    fontSize: 11.2,
+    lineHeight: 1.68,
+    marginBottom: 7,
+    maxWidth: 470
   },
   conclusionFinalWrap: {
-    marginTop: 14,
-    marginBottom: 14,
+    marginTop: 12,
+    marginBottom: 12,
     borderTop: "1px solid #D8D1CA",
     borderBottom: "1px solid #D8D1CA",
-    paddingVertical: 24
+    paddingVertical: 18
   },
   conclusionFinal: {
-    fontSize: 22,
+    fontSize: 20,
     lineHeight: 1.42,
     textAlign: "center",
     fontStyle: "italic"

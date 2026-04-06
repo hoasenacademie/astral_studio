@@ -36,7 +36,7 @@ export function PdfSignaturePage({
                       {imageSource ? (
                         <Image src={imageSource} style={styles.signatureImage} />
                       ) : (
-                        <Text style={styles.signatureSymbol}>{point.asset?.symbol || "•"}</Text>
+                        <Text style={styles.signatureSymbol}>{point.asset?.symbol || "*"}</Text>
                       )}
                     </View>
                     <Text style={styles.signatureCardValue}>{pointLabel(point.asset?.label || point.sign)}</Text>
@@ -51,3 +51,4 @@ export function PdfSignaturePage({
     </Page>
   );
 }
+

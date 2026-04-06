@@ -7,7 +7,7 @@ export function PdfQuotePage({ page }: { page: LayoutQuotePage }) {
   return (
     <Page size="A4" style={styles.quotePage}>
       <View style={styles.quoteFrame}>
-        <Text style={styles.quoteMark}>“</Text>
+        <Text style={styles.quoteMark}>"</Text>
         <Text style={styles.quoteText}>{page.text}</Text>
       </View>
       <PdfPageFooter />
