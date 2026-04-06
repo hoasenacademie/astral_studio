@@ -148,6 +148,12 @@ export const styles = StyleSheet.create({
     height: 52,
     objectFit: "contain"
   },
+  signatureSymbol: {
+    fontSize: 34,
+    lineHeight: 1.05,
+    color: "#8C6A61",
+    textAlign: "center"
+  },
   signatureCardValue: {
     fontSize: 12.5,
     textAlign: "center"

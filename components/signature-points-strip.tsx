@@ -1,5 +1,3 @@
-
-import Image from "next/image";
 import { SignaturePoint } from "@/lib/chart-signatures";
 
 export function SignaturePointsStrip({
@@ -19,12 +17,9 @@ export function SignaturePointsStrip({
       {validPoints.map((point) => (
         <div className="signature-point-card" key={point.key}>
           <div className="signature-point-frame">
-            <Image
-              src={point.asset!.image}
-              alt={`${point.label} en ${point.asset!.label}`}
-              width={compact ? 64 : 96}
-              height={compact ? 64 : 96}
-            />
+            <span className="signature-point-symbol" aria-hidden="true">
+              {point.asset?.symbol ?? "•"}
+            </span>
           </div>
           <div className="signature-point-meta">
             <span className="signature-point-label">{point.label}</span>

@@ -237,7 +237,9 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
                           <article key={`${column.label}-${point.key}`} className="mobile-signature-card">
                             <span className="mobile-signature-card__label">{point.label}</span>
                             <div className="mobile-signature-card__frame">
-                              {point.asset?.image ? <img src={point.asset.image} alt={`${point.label}`} width={54} height={54} /> : null}
+                              <span className="mobile-signature-card__symbol" aria-hidden="true">
+                                {point.asset?.symbol ?? "•"}
+                              </span>
                             </div>
                             <strong className="mobile-signature-card__sign">{point.asset?.label || point.sign || "Non renseigne"}</strong>
                           </article>

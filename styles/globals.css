@@ -462,10 +462,19 @@ img { max-width: 100%; display: block; }
   background: radial-gradient(circle at top, rgba(255,255,255,0.94), rgba(247,242,236,0.7));
   border: 1px solid rgba(140,106,97,0.15);
 }
+.signature-point-symbol {
+  font-size: 40px;
+  line-height: 1;
+  color: var(--accent-deep);
+  transform: translateY(1px);
+}
 
 .signature-points-strip.compact .signature-point-frame {
   width: 72px;
   height: 72px;
+}
+.signature-points-strip.compact .signature-point-symbol {
+  font-size: 30px;
 }
 
 .signature-point-label {
@@ -1216,6 +1225,12 @@ body.studio-fullscreen .studio-preview {
   background: rgba(255,255,255,0.92);
   display: grid;
   place-items: center;
+}
+.mobile-signature-card__symbol {
+  font-size: 31px;
+  line-height: 1;
+  color: var(--accent-deep);
+  transform: translateY(1px);
 }
 
 .mobile-signature-card__sign {
