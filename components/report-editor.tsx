@@ -103,6 +103,24 @@ export function ReportEditor({
     setDraft((current) => sanitizeReportDraft(mutator(current)));
   }
 
+  function resetDraftContent() {
+    const confirmed = window.confirm("Reinitialiser le contenu pour saisir une nouvelle analyse ?");
+    if (!confirmed) return;
+
+    const fresh = createEmptyReport(safeDraft.mode);
+    const nextDraft = sanitizeReportDraft({
+      ...fresh,
+      id: safeDraft.id,
+      createdAt: safeDraft.createdAt,
+      updatedAt: new Date().toISOString()
+    });
+
+    setDraft(nextDraft);
+    setGlobalPaste("");
+    setDispatchMessage("");
+    setSavedMessage("Contenu reinitialise. Saisis une nouvelle analyse puis ENREGISTRER.");
+  }
+
   function looksLikeStructuredPayload(raw: string) {
     return raw.includes("===SECTION===") || /^\s*key\s*:/im.test(raw);
   }
@@ -317,6 +335,9 @@ export function ReportEditor({
       <div className="button-row">
         <button className="button" type="button" onClick={() => void save()} disabled={saving}>
           {saving ? "ENREGISTRER..." : "ENREGISTRER"}
+        </button>
+        <button className="button-secondary" type="button" onClick={resetDraftContent} disabled={saving}>
+          REINITIALISER
         </button>
         <button className="button-secondary" type="button" onClick={() => void removeReport()} disabled={!canUseServerActions || busyDelete}>
           {busyDelete ? "SUPPRIMER..." : "SUPPRIMER"}

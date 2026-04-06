@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { dispatchEditorialPaste } from "@/lib/editorial-dispatch";
 import { canonicalKeysForSectionId } from "@/lib/editorial/structured-sections";
 import { sanitizeReportDraft, StudioReportDraft } from "@/lib/report-builder";
+import { createEmptyReport } from "@/lib/templates";
 import { MobileReportView } from "@/components/mobile-report-view";
 import type { ParsePreviewRow } from "@/lib/gpt-parser/types";
 import {
@@ -206,6 +207,28 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
 
   function updateDraft(next: StudioReportDraft) {
     setDraft(sanitizeReportDraft(next));
+  }
+
+  function resetDraftContent() {
+    if (!draft) return;
+    const confirmed = window.confirm("Reinitialiser le contenu pour saisir une nouvelle analyse ?");
+    if (!confirmed) return;
+
+    const fresh = createEmptyReport(draft.mode);
+    const nextDraft = sanitizeReportDraft({
+      ...fresh,
+      id: draft.id,
+      createdAt: draft.createdAt,
+      updatedAt: new Date().toISOString()
+    });
+
+    setDraft(nextDraft);
+    setGlobalPaste("");
+    setMachinePaste("");
+    setParsePreview(null);
+    setParseErrors([]);
+    setCanImport(false);
+    setStatus("Contenu reinitialise. Saisis une nouvelle analyse puis ENREGISTRER.");
   }
 
   async function persistDraft(sourceDraft: StudioReportDraft, options?: { silent?: boolean }) {
@@ -740,6 +763,9 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
       <>
         <button className="button" type="button" onClick={() => void persistDraft(safeDraft)} disabled={busySave}>
           {busySave ? "ENREGISTRER..." : "ENREGISTRER"}
+        </button>
+        <button className="button-secondary" type="button" onClick={resetDraftContent} disabled={busySave}>
+          REINITIALISER
         </button>
         <button className="button-secondary" type="button" onClick={() => void removeReport()} disabled={busyDelete}>
           {busyDelete ? "SUPPRIMER..." : "SUPPRIMER"}
