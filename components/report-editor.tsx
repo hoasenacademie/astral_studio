@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createEmptyReport } from "@/lib/templates";
 import { sanitizeReportDraft } from "@/lib/report-builder";
@@ -36,6 +36,7 @@ export function ReportEditor({
   const [globalPaste, setGlobalPaste] = useState("");
   const [dispatchMessage, setDispatchMessage] = useState("");
   const router = useRouter();
+  const draftBackupKey = `astral:report-draft:${mode}`;
 
   const isEditMode = persistMode === "edit";
   const safeDraft = useMemo(() => sanitizeReportDraft(draft), [draft]);
@@ -44,6 +45,29 @@ export function ReportEditor({
     () => (safeDraft.mode === "compatibility" ? getChartSignaturePoints(safeDraft.parsedB) : []),
     [safeDraft.mode, safeDraft.parsedB]
   );
+
+  useEffect(() => {
+    if (persistMode !== "create") return;
+    try {
+      const backup = window.localStorage.getItem(draftBackupKey);
+      if (!backup) return;
+      const parsed = JSON.parse(backup) as ReportRecord;
+      const recovered = sanitizeReportDraft(parsed);
+      setDraft(recovered);
+      setSavedMessage("Brouillon local restaure.");
+    } catch {
+      // Keep silent on malformed local cache.
+    }
+  }, [draftBackupKey, persistMode]);
+
+  useEffect(() => {
+    if (persistMode !== "create") return;
+    try {
+      window.localStorage.setItem(draftBackupKey, JSON.stringify(safeDraft));
+    } catch {
+      // Keep silent when storage quota is full.
+    }
+  }, [draftBackupKey, persistMode, safeDraft]);
 
   function update(mutator: (current: ReportRecord) => ReportRecord) {
     setDraft((current) => sanitizeReportDraft(mutator(current)));
@@ -91,37 +115,60 @@ export function ReportEditor({
     setDispatchMessage("Dispatch narratif appliqué.");
   }
 
+  async function readResponseError(response: Response, fallback: string) {
+    try {
+      const data = (await response.json()) as { error?: string };
+      if (data?.error) return data.error;
+      return fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
   async function save() {
     setSaving(true);
     setSavedMessage("");
+    try {
+      const endpoint = isEditMode ? `/api/reports/${safeDraft.id}` : "/api/reports";
+      const method = isEditMode ? "PUT" : "POST";
+      const response = await fetch(endpoint, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(safeDraft)
+      });
 
-    const endpoint = isEditMode ? `/api/reports/${safeDraft.id}` : "/api/reports";
-    const method = isEditMode ? "PUT" : "POST";
-    const response = await fetch(endpoint, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(safeDraft)
-    });
+      if (!response.ok) {
+        const serverMessage = await readResponseError(
+          response,
+          "Impossible d’enregistrer pour le moment."
+        );
+        const backupNotice = persistMode === "create" ? " Brouillon local conservé sur cet appareil." : "";
+        setSavedMessage(`${serverMessage}${backupNotice}`);
+        return;
+      }
 
-    if (!response.ok) {
+      const data = (await response.json()) as { report: ReportRecord };
+      const safeReport = sanitizeReportDraft(data.report);
+      setDraft(safeReport);
+
+      if (!isEditMode && safeReport.id) {
+        try {
+          window.localStorage.removeItem(draftBackupKey);
+        } catch {
+          // Ignore local cache clean-up failures.
+        }
+        setSavedMessage("Rapport enregistre. Ouverture du studio complet...");
+        router.push(`/reports/${safeReport.id}/edit`);
+        return;
+      }
+
+      setSavedMessage(isEditMode ? "Rapport mis à jour." : "Rapport enregistré.");
+    } catch {
+      const backupNotice = persistMode === "create" ? " Brouillon local conservé sur cet appareil." : "";
+      setSavedMessage(`Impossible d’enregistrer pour le moment.${backupNotice}`);
+    } finally {
       setSaving(false);
-      setSavedMessage("Impossible d’enregistrer pour le moment.");
-      return;
     }
-
-    const data = (await response.json()) as { report: ReportRecord };
-    const safeReport = sanitizeReportDraft(data.report);
-    setDraft(safeReport);
-
-    if (!isEditMode && safeReport.id) {
-      setSavedMessage("Rapport enregistre. Ouverture du studio complet...");
-      setSaving(false);
-      router.push(`/reports/${safeReport.id}/edit`);
-      return;
-    }
-
-    setSavedMessage(isEditMode ? "Rapport mis à jour." : "Rapport enregistré.");
-    setSaving(false);
   }
 
   async function openTechnicalPdfFromDraft() {
@@ -188,16 +235,12 @@ export function ReportEditor({
         >
           {previewToggleLabel}
         </button>
-        {safeDraft.id ? (
-          <>
-            <button className="button-ghost" type="button" onClick={() => void openEditorialPdfFromDraft()}>
-              Télécharger le PDF
-            </button>
-            <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromDraft()}>
-              {technicalLabel}
-            </button>
-          </>
-        ) : null}
+        <button className="button-ghost" type="button" onClick={() => void openEditorialPdfFromDraft()}>
+          Télécharger le PDF
+        </button>
+        <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromDraft()}>
+          {technicalLabel}
+        </button>
       </div>
     );
   }

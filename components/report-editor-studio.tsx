@@ -37,6 +37,16 @@ function looksLikeStructuredPayload(raw: string) {
   return raw.includes("===SECTION===") || /^\s*key\s*:/im.test(raw);
 }
 
+async function readResponseError(response: Response, fallback: string) {
+  try {
+    const data = (await response.json()) as { error?: string };
+    if (data?.error) return data.error;
+    return fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 function updateStructuredSectionField(
   section: StudioReportDraft["editorialSections"][number],
   field: SectionField,
@@ -192,8 +202,9 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
         body: JSON.stringify(sourceDraft)
       });
       if (!response.ok) {
+        const message = await readResponseError(response, "Echec de la sauvegarde.");
         if (silent) setAutosaveState("error");
-        else setStatus("Echec de la sauvegarde.");
+        else setStatus(message);
         return false;
       }
 
@@ -703,9 +714,6 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
         <Link className="button-ghost" href={`/reports/${reportId}`}>Voir detail</Link>
         {shareUrl ? <a className="button-ghost" href={shareUrl} target="_blank" rel="noreferrer">Ouvrir lien mobile</a> : null}
         <a className="button-ghost" href={`/api/reports/${reportId}/pdf?preview=1`} target="_blank" rel="noreferrer">Ouvrir PDF</a>
-        <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
-          {technicalLabel}
-        </button>
       </>
     );
   }
@@ -897,9 +905,6 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
 
           <div className="button-row">
             <button className="button-secondary" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
-              {technicalLabel}
-            </button>
-            <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
               {technicalLabel}
             </button>
           </div>

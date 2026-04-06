@@ -15,7 +15,18 @@ type PgClient = {
   ) => Promise<{ rows: T[] }>;
 };
 
-const storageDir = path.join(process.cwd(), "data", "storage");
+const hasPostgresEnv = Boolean(
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_URL_NON_POOLING
+);
+const useTmpStorage = Boolean(process.env.VERCEL) && !hasPostgresEnv;
+const tmpRoot = process.platform === "win32"
+  ? path.join(process.cwd(), "data", "tmp")
+  : "/tmp";
+const storageDir = useTmpStorage
+  ? path.join(tmpRoot, "astral-storage")
+  : path.join(process.cwd(), "data", "storage");
 const storageFile = path.join(storageDir, "reports.json");
 const requireFromHere = createRequire(import.meta.url);
 let volatileStorage: { reports: ReportRecord[] } = { reports: [] };
@@ -62,7 +73,7 @@ function isReadonlyStorageError(error: unknown) {
 }
 
 function allowVolatileFallback() {
-  return Boolean(process.env.VERCEL) && !isPostgresEnabled();
+  return useTmpStorage;
 }
 
 async function readStorage(): Promise<{ reports: ReportRecord[] }> {
