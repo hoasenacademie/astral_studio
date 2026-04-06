@@ -7,6 +7,11 @@ import { canonicalKeysForSectionId } from "@/lib/editorial/structured-sections";
 import { sanitizeReportDraft, StudioReportDraft } from "@/lib/report-builder";
 import { MobileReportView } from "@/components/mobile-report-view";
 import type { ParsePreviewRow } from "@/lib/gpt-parser/types";
+import {
+  getLocalReport,
+  removeLocalReport,
+  upsertLocalReport
+} from "@/lib/local-report-cache";
 
 const AUTOSAVE_DELAY_MS = 1400;
 const PDF_PREVIEW_DELAY_MS = 900;
@@ -140,6 +145,21 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
       try {
         const response = await fetch(`/api/reports/${reportId}`);
         if (!response.ok) {
+          if (response.status === 404) {
+            const local = getLocalReport(reportId);
+            if (local) {
+              const safeLocal = sanitizeReportDraft(local);
+              setDraft(safeLocal);
+              setStatus("Analyse locale restauree. Pense a ENREGISTRER pour resynchroniser.");
+              setMachinePaste("");
+              setParsePreview(null);
+              setParseErrors([]);
+              setCanImport(false);
+              lastSavedHashRef.current = draftHash(safeLocal);
+              setAutosaveState("idle");
+              return;
+            }
+          }
           setError(response.status === 404 ? "Rapport introuvable." : "Impossible de charger le rapport.");
           return;
         }
@@ -214,6 +234,7 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
       const savedHash = draftHash(safe);
       lastSavedHashRef.current = savedHash;
       setDraft(safe);
+      upsertLocalReport(safe);
 
       if (silent) {
         setAutosaveState("saved");
@@ -592,6 +613,7 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
         setStatus(message);
         return;
       }
+      removeLocalReport(reportId);
       window.location.assign("/dashboard");
     } catch {
       setStatus("Suppression impossible.");

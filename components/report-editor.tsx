@@ -14,6 +14,11 @@ import { mapParsedSectionsToEditorialSections } from "@/lib/reports/injection";
 import { getChartSignaturePoints } from "@/lib/chart-signatures";
 import { SignaturePointsStrip } from "@/components/signature-points-strip";
 import { EnhancedInput } from "@/components/enhanced-input";
+import {
+  getLocalReport,
+  removeLocalReport,
+  upsertLocalReport
+} from "@/lib/local-report-cache";
 
 const previewTabs = [
   { key: "editor", label: "Édition" },
@@ -37,6 +42,7 @@ export function ReportEditor({
   const [savedMessage, setSavedMessage] = useState("");
   const [globalPaste, setGlobalPaste] = useState("");
   const [dispatchMessage, setDispatchMessage] = useState("");
+  const [restoreId, setRestoreId] = useState<string | null>(null);
   const router = useRouter();
   const draftBackupKey = `astral:report-draft:${mode}`;
 
@@ -48,6 +54,15 @@ export function ReportEditor({
     () => (safeDraft.mode === "compatibility" ? getChartSignaturePoints(safeDraft.parsedB) : []),
     [safeDraft.mode, safeDraft.parsedB]
   );
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      setRestoreId(params.get("restore"));
+    } catch {
+      setRestoreId(null);
+    }
+  }, []);
 
   useEffect(() => {
     if (persistMode !== "create") return;
@@ -62,6 +77,18 @@ export function ReportEditor({
       // Keep silent on malformed local cache.
     }
   }, [draftBackupKey, persistMode]);
+
+  useEffect(() => {
+    if (persistMode !== "create") return;
+    if (!restoreId) return;
+
+    const restored = getLocalReport(restoreId);
+    if (!restored || restored.mode !== mode) return;
+    const safe = sanitizeReportDraft(restored);
+    setDraft(safe);
+    setIsPersisted(true);
+    setSavedMessage("Analyse locale restauree. Pense a ENREGISTRER pour resynchroniser.");
+  }, [mode, persistMode, restoreId]);
 
   useEffect(() => {
     if (persistMode !== "create") return;
@@ -155,6 +182,7 @@ export function ReportEditor({
       const safeReport = sanitizeReportDraft(data.report);
       setDraft(safeReport);
       setIsPersisted(true);
+      upsertLocalReport(safeReport);
 
       if (!isEditMode && !canUpdate) {
         try {
@@ -221,6 +249,7 @@ export function ReportEditor({
       } catch {
         // Ignore local cache clean-up failures.
       }
+      removeLocalReport(safeDraft.id);
       router.push("/dashboard");
     } catch {
       setSavedMessage("Suppression impossible.");
