@@ -15,7 +15,8 @@ export default async function SharedReportPage({ params }: { params: Promise<{ t
           report={report}
           options={{
             analysisOnly: false,
-            showShareActions: false
+            showShareActions: false,
+            showPdfDownloadAtEnd: true
           }}
         />
       </div>

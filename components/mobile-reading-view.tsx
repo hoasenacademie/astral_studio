@@ -17,6 +17,7 @@ type MobileScreen =
 type MobileReadingOptions = {
   analysisOnly?: boolean;
   showShareActions?: boolean;
+  showPdfDownloadAtEnd?: boolean;
 };
 
 function textOrFallback(value?: string) {
@@ -159,7 +160,8 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
   const [progress, setProgress] = useState(0);
   const resolvedOptions = {
     analysisOnly: Boolean(options?.analysisOnly),
-    showShareActions: options?.showShareActions ?? true
+    showShareActions: options?.showShareActions ?? true,
+    showPdfDownloadAtEnd: Boolean(options?.showPdfDownloadAtEnd)
   };
 
   const plan = useMemo(() => resolveEditorialLayoutPlan(report), [report]);
@@ -367,6 +369,19 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
               </button>
             </div>
             <p className="mobile-screen__subtitle">Partagez cette lecture en conservant son format editorial complet.</p>
+          </section>
+        ) : null}
+
+        {!resolvedOptions.showShareActions && resolvedOptions.showPdfDownloadAtEnd && report.share?.isPublished ? (
+          <section className="mobile-screen mobile-screen--share mobile-fade-up" style={{ "--delay": "220ms" } as CSSProperties}>
+            <div className="section-kicker">Votre document</div>
+            <h2>Telecharger votre analyse PDF</h2>
+            <div className="mobile-share-actions">
+              <a className="mobile-share-button mobile-share-button--pdf" href={`/api/reports/${report.id}/pdf`} target="_blank" rel="noreferrer">
+                Telecharger le PDF
+              </a>
+            </div>
+            <p className="mobile-screen__subtitle">Version complete et imprimee de votre lecture.</p>
           </section>
         ) : null}
       </div>
