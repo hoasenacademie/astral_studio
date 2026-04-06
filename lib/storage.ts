@@ -34,6 +34,11 @@ let volatileStorage: { reports: ReportRecord[] } = { reports: [] };
 let pgClientPromise: Promise<PgClient | null> | null = null;
 let pgReady = false;
 
+export function hasPersistentStorage() {
+  if (isPostgresEnabled()) return true;
+  return !Boolean(process.env.VERCEL);
+}
+
 function isPostgresEnabled() {
   return Boolean(process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING);
 }
@@ -278,8 +283,7 @@ function createShareToken() {
 }
 
 function shouldRotateShareToken(token?: string | null) {
-  if (!token) return true;
-  return token.startsWith("shr_");
+  return !token;
 }
 
 export async function listReports(): Promise<ReportRecord[]> {

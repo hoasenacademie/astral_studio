@@ -16,6 +16,7 @@ export function ReportShareActions({
   const [isPublished, setIsPublished] = useState(initialPublished);
   const [shareToken, setShareToken] = useState<string | null>(initialToken);
   const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState("");
   const technicalLabel = mode === "compatibility" ? "pdf tech. 2" : "pdf tech. 1";
 
   const shareUrl = useMemo(() => {
@@ -25,12 +26,18 @@ export function ReportShareActions({
 
   async function publish() {
     setBusy(true);
+    setStatus("");
     try {
       const response = await fetch(`/api/reports/${reportId}/publish`, { method: "POST" });
-      if (!response.ok) throw new Error("publish_failed");
+      if (!response.ok) {
+        const data = (await response.json().catch(() => ({}))) as { error?: string };
+        setStatus(data.error ?? "Publication impossible.");
+        return;
+      }
       const data = await response.json();
       setIsPublished(Boolean(data.report?.share?.isPublished));
       setShareToken(data.report?.share?.shareToken ?? null);
+      setStatus("Version mobile publiee.");
     } finally {
       setBusy(false);
     }
@@ -38,12 +45,18 @@ export function ReportShareActions({
 
   async function unpublish() {
     setBusy(true);
+    setStatus("");
     try {
       const response = await fetch(`/api/reports/${reportId}/unpublish`, { method: "POST" });
-      if (!response.ok) throw new Error("unpublish_failed");
+      if (!response.ok) {
+        const data = (await response.json().catch(() => ({}))) as { error?: string };
+        setStatus(data.error ?? "Depublication impossible.");
+        return;
+      }
       const data = await response.json();
       setIsPublished(Boolean(data.report?.share?.isPublished));
       setShareToken(data.report?.share?.shareToken ?? null);
+      setStatus("Version mobile depubliee.");
     } finally {
       setBusy(false);
     }
@@ -93,6 +106,7 @@ export function ReportShareActions({
       <p className="muted-note">
         Le PDF editorial se partage comme document final. Le PDF technique est reserve au workflow interne GPT.
       </p>
+      {status ? <p className="muted-note">{status}</p> : null}
     </div>
   );
 }
