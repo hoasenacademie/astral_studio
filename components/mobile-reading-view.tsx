@@ -387,13 +387,11 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
         {!resolvedOptions.showShareActions && resolvedOptions.showPdfDownloadAtEnd && report.share?.isPublished ? (
           <section className="mobile-screen mobile-screen--share mobile-fade-up" style={{ "--delay": "220ms" } as CSSProperties}>
             <div className="section-kicker">Votre document</div>
-            <h2>Telecharger votre analyse PDF</h2>
             <div className="mobile-share-actions">
               <a className="mobile-share-button mobile-share-button--pdf" href={`/api/reports/${report.id}/pdf`} target="_blank" rel="noreferrer">
-                Telecharger le PDF
+                Astral Compatibility
               </a>
             </div>
-            <p className="mobile-screen__subtitle">Version complete et imprimee de votre lecture.</p>
           </section>
         ) : null}
       </div>
@@ -407,7 +405,9 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
           onClick={scrollToToc}
           aria-label="Retour au sommaire des passages"
         >
-          Passages
+          <span className="mobile-jump-toc__line" />
+          <span className="mobile-jump-toc__line" />
+          <span className="mobile-jump-toc__line" />
         </button>
       ) : null}
     </div>

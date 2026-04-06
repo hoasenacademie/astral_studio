@@ -1452,6 +1452,10 @@ body.studio-fullscreen .studio-preview {
   transform: translateY(12px) scale(0.98);
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: grid;
+  gap: 4px;
+  min-width: 46px;
+  justify-items: center;
 }
 
 .mobile-jump-toc.is-visible {
@@ -1462,4 +1466,12 @@ body.studio-fullscreen .studio-preview {
 
 .mobile-jump-toc:hover {
   box-shadow: 0 16px 32px rgba(17,12,10,0.22);
+}
+
+.mobile-jump-toc__line {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ink);
 }
