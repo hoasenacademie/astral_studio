@@ -18,6 +18,8 @@ type MobileReadingOptions = {
   analysisOnly?: boolean;
   showShareActions?: boolean;
   showPdfDownloadAtEnd?: boolean;
+  forceToc?: boolean;
+  showTocFab?: boolean;
 };
 
 function textOrFallback(value?: string) {
@@ -138,7 +140,7 @@ function mapPlanToScreens(
     });
   }
 
-  if (report.rendering.mobileReading.showToc) {
+  if (report.rendering.mobileReading.showToc || options.forceToc) {
     const items = screens
       .filter((screen) => screen.kind === "section_intro" || screen.kind === "conclusion")
       .map((screen) => {
@@ -161,14 +163,23 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
   const resolvedOptions = {
     analysisOnly: Boolean(options?.analysisOnly),
     showShareActions: options?.showShareActions ?? true,
-    showPdfDownloadAtEnd: Boolean(options?.showPdfDownloadAtEnd)
+    showPdfDownloadAtEnd: Boolean(options?.showPdfDownloadAtEnd),
+    forceToc: Boolean(options?.forceToc),
+    showTocFab: Boolean(options?.showTocFab)
   };
 
   const plan = useMemo(() => resolveEditorialLayoutPlan(report), [report]);
   const screens = useMemo(
     () => mapPlanToScreens(plan, report, resolvedOptions),
-    [plan, report, resolvedOptions.analysisOnly]
+    [plan, report, resolvedOptions.analysisOnly, resolvedOptions.forceToc]
   );
+  const hasToc = screens.some((screen) => screen.kind === "toc");
+
+  function scrollToToc() {
+    const target = document.getElementById("screen-toc");
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   useEffect(() => {
     const container = findScrollContainer(rootRef.current);
@@ -212,12 +223,13 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
 
           if (screen.kind === "cover") {
             return (
-              <section key={screen.id} id={`screen-${screen.id}`} className="mobile-screen mobile-screen--cover mobile-cover-art mobile-fade-up" style={animatedStyle}>
-                <div className="mobile-screen__veil" />
+              <section key={screen.id} id={`screen-${screen.id}`} className="mobile-screen mobile-screen--cover mobile-fade-up" style={animatedStyle}>
                 <div className="mobile-screen__content">
-                  <p className="mobile-screen__eyebrow">Astral Studio — Document confidentiel</p>
-                  <h1 className="mobile-cover-title">{screen.title}</h1>
-                  <p className="mobile-screen__subtitle">{screen.subtitle}</p>
+                  <img
+                    className="mobile-cover-image"
+                    src="/mobile/cover-mobile.png"
+                    alt={`Couverture mobile ${screen.title}`}
+                  />
                   <p className="mobile-screen__names">{screen.names}</p>
                 </div>
               </section>
@@ -387,6 +399,17 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
       </div>
 
       <div className="mobile-reading-footnote">{names}</div>
+
+      {resolvedOptions.showTocFab && hasToc ? (
+        <button
+          type="button"
+          className={`mobile-jump-toc ${progress > 0.06 ? "is-visible" : ""}`}
+          onClick={scrollToToc}
+          aria-label="Retour au sommaire des passages"
+        >
+          Passages
+        </button>
+      ) : null}
     </div>
   );
 }
