@@ -18,6 +18,7 @@ type PgClient = {
 const storageDir = path.join(process.cwd(), "data", "storage");
 const storageFile = path.join(storageDir, "reports.json");
 const requireFromHere = createRequire(import.meta.url);
+let volatileStorage: { reports: ReportRecord[] } = { reports: [] };
 
 let pgClientPromise: Promise<PgClient | null> | null = null;
 let pgReady = false;
@@ -57,7 +58,7 @@ async function ensureStorage() {
 function isReadonlyStorageError(error: unknown) {
   if (!error || typeof error !== "object") return false;
   const code = "code" in error ? String((error as { code?: unknown }).code ?? "") : "";
-  return code === "EROFS" || code === "EPERM" || code === "EACCES";
+  return code === "EROFS" || code === "EPERM" || code === "EACCES" || code === "ENOENT";
 }
 
 function allowVolatileFallback() {
@@ -68,10 +69,16 @@ async function readStorage(): Promise<{ reports: ReportRecord[] }> {
   try {
     await ensureStorage();
     const content = await fs.readFile(storageFile, "utf-8");
-    return JSON.parse(content) as { reports: ReportRecord[] };
+    const parsed = JSON.parse(content) as { reports: ReportRecord[] };
+    volatileStorage = {
+      reports: Array.isArray(parsed.reports) ? parsed.reports : []
+    };
+    return parsed;
   } catch (error) {
     if (allowVolatileFallback() && isReadonlyStorageError(error)) {
-      return { reports: [] };
+      return {
+        reports: Array.isArray(volatileStorage.reports) ? volatileStorage.reports : []
+      };
     }
     throw error;
   }
@@ -81,8 +88,14 @@ async function writeStorage(payload: { reports: ReportRecord[] }) {
   try {
     await ensureStorage();
     await fs.writeFile(storageFile, JSON.stringify(payload, null, 2), "utf-8");
+    volatileStorage = {
+      reports: Array.isArray(payload.reports) ? payload.reports : []
+    };
   } catch (error) {
     if (allowVolatileFallback() && isReadonlyStorageError(error)) {
+      volatileStorage = {
+        reports: Array.isArray(payload.reports) ? payload.reports : []
+      };
       return;
     }
     throw error;
