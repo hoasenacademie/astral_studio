@@ -1162,6 +1162,16 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
           </div>
         )}
       </aside>
+
+      <button
+        className="floating-save-button floating-save-button--studio"
+        type="button"
+        onClick={() => void persistDraft(safeDraft)}
+        disabled={busySave}
+        aria-label="Enregistrer la saisie"
+      >
+        {busySave ? "ENREGISTRER..." : "ENREGISTRER"}
+      </button>
     </div>
   );
 }

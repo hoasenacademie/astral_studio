@@ -661,6 +661,18 @@ export function ReportEditor({
       ) : (
         <ReportPreview report={safeDraft} />
       )}
+
+      {tab === "editor" ? (
+        <button
+          className="floating-save-button"
+          type="button"
+          onClick={() => void save()}
+          disabled={saving}
+          aria-label="Enregistrer la saisie"
+        >
+          {saving ? "ENREGISTRER..." : "ENREGISTRER"}
+        </button>
+      ) : null}
     </div>
   );
 }
