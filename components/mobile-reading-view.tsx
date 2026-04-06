@@ -26,6 +26,13 @@ function textOrFallback(value?: string) {
   return value && value.trim() ? value : "Non renseigne";
 }
 
+function resolveMobileSignImage(
+  asset: { key?: string; image?: string } | null | undefined
+) {
+  if (asset?.key) return `/signs-mobile/${asset.key}.webp`;
+  return asset?.image ?? "";
+}
+
 function splitLongParagraph(paragraph: string, maxWords: number) {
   const words = paragraph.trim().split(/\s+/).filter(Boolean);
   if (words.length <= maxWords) return [paragraph.trim()].filter(Boolean);
@@ -254,9 +261,15 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
                               {point.asset?.image ? (
                                 <img
                                   className="mobile-signature-card__image"
-                                  src={point.asset.image}
+                                  src={resolveMobileSignImage(point.asset)}
                                   alt={`Signe ${point.asset.label}`}
                                   loading="lazy"
+                                  onError={(event) => {
+                                    const target = event.currentTarget;
+                                    if (target.src.includes("/signs-mobile/")) {
+                                      target.src = point.asset?.image ?? "";
+                                    }
+                                  }}
                                 />
                               ) : (
                                 <span className="mobile-signature-card__symbol" aria-hidden="true">
@@ -264,7 +277,6 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
                                 </span>
                               )}
                             </div>
-                            <strong className="mobile-signature-card__sign">{point.asset?.label || point.sign || "Non renseigne"}</strong>
                           </article>
                         ))}
                       </div>
