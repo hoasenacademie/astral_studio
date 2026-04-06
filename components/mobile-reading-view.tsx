@@ -14,6 +14,11 @@ type MobileScreen =
   | { kind: "signature_card"; id: string; label: string; text: string }
   | { kind: "conclusion"; id: string; title: string; subtitle: string; paragraphs: string[]; finalLine: string; reminderLines: string[] };
 
+type MobileReadingOptions = {
+  analysisOnly?: boolean;
+  showShareActions?: boolean;
+};
+
 function textOrFallback(value?: string) {
   return value && value.trim() ? value : "Non renseigne";
 }
@@ -51,12 +56,18 @@ function isWindowTarget(target: HTMLElement | Window): target is Window {
   return target === window;
 }
 
-function mapPlanToScreens(plan: EditorialLayoutPage[], report: ReportRecord): MobileScreen[] {
+function mapPlanToScreens(
+  plan: EditorialLayoutPage[],
+  report: ReportRecord,
+  options: MobileReadingOptions
+): MobileScreen[] {
   const screens: MobileScreen[] = [];
   const maxWords = Math.max(70, report.rendering.mobileReading.bodyBlockMaxWords || 110);
+  const analysisOnly = Boolean(options.analysisOnly);
 
   for (const page of plan) {
     if (page.kind === "cover_page") {
+      if (analysisOnly) continue;
       screens.push({
         kind: "cover",
         id: "cover",
@@ -68,6 +79,7 @@ function mapPlanToScreens(plan: EditorialLayoutPage[], report: ReportRecord): Mo
     }
 
     if (page.kind === "signature_page") {
+      if (analysisOnly) continue;
       screens.push({
         kind: "signature",
         id: "signature",
@@ -133,18 +145,28 @@ function mapPlanToScreens(plan: EditorialLayoutPage[], report: ReportRecord): Mo
         return { label: screen.title, anchor: `screen-${screen.id}` };
       });
 
-    if (items.length) screens.splice(2, 0, { kind: "toc", id: "toc", items });
+    if (items.length) {
+      const insertionIndex = analysisOnly ? 0 : 2;
+      screens.splice(insertionIndex, 0, { kind: "toc", id: "toc", items });
+    }
   }
 
   return screens;
 }
 
-export function MobileReadingView({ report }: { report: ReportRecord }) {
+export function MobileReadingView({ report, options }: { report: ReportRecord; options?: MobileReadingOptions }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const resolvedOptions = {
+    analysisOnly: Boolean(options?.analysisOnly),
+    showShareActions: options?.showShareActions ?? true
+  };
 
   const plan = useMemo(() => resolveEditorialLayoutPlan(report), [report]);
-  const screens = useMemo(() => mapPlanToScreens(plan, report), [plan, report]);
+  const screens = useMemo(
+    () => mapPlanToScreens(plan, report, resolvedOptions),
+    [plan, report, resolvedOptions.analysisOnly]
+  );
 
   useEffect(() => {
     const container = findScrollContainer(rootRef.current);
@@ -315,7 +337,7 @@ export function MobileReadingView({ report }: { report: ReportRecord }) {
           );
         })}
 
-        {report.share?.isPublished ? (
+        {resolvedOptions.showShareActions && report.share?.isPublished ? (
           <section className="mobile-screen mobile-screen--share mobile-fade-up" style={{ "--delay": "180ms" } as CSSProperties}>
             <div className="section-kicker">Partager ce rapport</div>
             <h2>Version PDF & lien mobile</h2>

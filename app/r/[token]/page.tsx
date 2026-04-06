@@ -11,7 +11,13 @@ export default async function SharedReportPage({ params }: { params: Promise<{ t
   return (
     <main className="page">
       <div className="shell">
-        <MobileReadingView report={report} />
+        <MobileReadingView
+          report={report}
+          options={{
+            analysisOnly: true,
+            showShareActions: false
+          }}
+        />
       </div>
     </main>
   );
