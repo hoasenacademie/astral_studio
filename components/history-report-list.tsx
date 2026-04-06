@@ -17,6 +17,27 @@ function formatModeLabel(mode: ReportRecord["mode"]) {
   return mode === "solo" ? "1 theme" : "2 themes";
 }
 
+function cleanFirstName(value?: string) {
+  return (value ?? "").trim();
+}
+
+function reportTitleWithNames(report: ReportRecord) {
+  const baseTitle = report.meta.title;
+
+  if (report.mode === "solo") {
+    const firstName = cleanFirstName(report.subjects.solo?.firstName);
+    return firstName ? `${baseTitle} - ${firstName}` : baseTitle;
+  }
+
+  const firstNameA = cleanFirstName(report.subjects.personA?.firstName);
+  const firstNameB = cleanFirstName(report.subjects.personB?.firstName);
+
+  if (firstNameA && firstNameB) return `${baseTitle} - ${firstNameA} et ${firstNameB}`;
+  if (firstNameA) return `${baseTitle} - ${firstNameA}`;
+  if (firstNameB) return `${baseTitle} - ${firstNameB}`;
+  return baseTitle;
+}
+
 export function HistoryReportList({ initialReports }: HistoryReportListProps) {
   const router = useRouter();
   const [reports, setReports] = useState<ReportRecord[]>(initialReports);
@@ -108,7 +129,7 @@ export function HistoryReportList({ initialReports }: HistoryReportListProps) {
               <span>{formatModeLabel(report.mode)}</span>
               <span>{new Date(report.updatedAt).toLocaleString("fr-FR")}</span>
             </div>
-            <h3>{report.meta.title}</h3>
+            <h3>{reportTitleWithNames(report)}</h3>
             <p>{report.meta.subtitle}</p>
           </Link>
 
