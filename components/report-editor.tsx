@@ -113,8 +113,31 @@ export function ReportEditor({
     setSaving(false);
   }
 
+  async function openTechnicalPdfFromDraft() {
+    setSavedMessage("");
+    try {
+      const response = await fetch("/api/reports/preview-pdf?kind=technical", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(safeDraft)
+      });
+
+      if (!response.ok) {
+        setSavedMessage("Impossible de generer le PDF technique.");
+        return;
+      }
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      window.open(objectUrl, "_blank", "noopener,noreferrer");
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000);
+      setSavedMessage("PDF technique genere.");
+    } catch {
+      setSavedMessage("Impossible de generer le PDF technique.");
+    }
+  }
+
   const pdfUrl = safeDraft.id ? `/api/reports/${safeDraft.id}/pdf` : "#";
-  const technicalPdfUrl = safeDraft.id ? `/api/reports/${safeDraft.id}/pdf?kind=technical` : "#";
   const technicalLabel = safeDraft.mode === "compatibility" ? "pdf tech. 2" : "pdf tech. 1";
   const previewToggleLabel = tab === "preview" ? "Revenir à l’édition" : "Voir l’aperçu premium";
 
@@ -136,9 +159,9 @@ export function ReportEditor({
             <a className="button-ghost" href={pdfUrl} target="_blank" rel="noreferrer">
               Télécharger le PDF
             </a>
-            <a className="button-ghost" href={technicalPdfUrl} target="_blank" rel="noreferrer">
+            <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromDraft()}>
               {technicalLabel}
-            </a>
+            </button>
           </>
         ) : null}
       </div>

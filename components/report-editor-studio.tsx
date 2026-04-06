@@ -616,23 +616,54 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
     });
   }
 
+  async function openPdfPreviewFromDraft(kind: "editorial" | "technical") {
+    if (!draft) return false;
+    const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
+
+    try {
+      const endpoint = kind === "technical"
+        ? "/api/reports/preview-pdf?kind=technical"
+        : "/api/reports/preview-pdf";
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(draft)
+      });
+
+      if (!response.ok) {
+        if (popup) popup.close();
+        setStatus(`Impossible de generer le PDF ${kind === "technical" ? "technique" : "editorial"}.`);
+        return false;
+      }
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      if (popup) {
+        popup.location.href = objectUrl;
+      } else {
+        window.open(objectUrl, "_blank", "noopener,noreferrer");
+      }
+
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000);
+      return true;
+    } catch {
+      if (popup) popup.close();
+      setStatus(`Impossible de generer le PDF ${kind === "technical" ? "technique" : "editorial"}.`);
+      return false;
+    }
+  }
+
   async function openTechnicalPdfFromStudio() {
     if (!draft) return;
-    const popup = window.open("about:blank", "_blank", "noopener,noreferrer");
     const saved = await persistDraft(draft, { silent: true });
-    if (!saved) {
-      if (popup) popup.close();
-      setStatus("Impossible de generer le PDF technique: sauvegarde en echec.");
-      return;
-    }
-
-    const technicalUrl = `/api/reports/${reportId}/pdf?kind=technical&preview=1`;
-    if (popup) {
-      popup.location.href = technicalUrl;
-    } else {
-      window.open(technicalUrl, "_blank", "noopener,noreferrer");
-    }
-    setStatus("PDF technique genere.");
+    const opened = await openPdfPreviewFromDraft("technical");
+    if (!opened) return;
+    setStatus(
+      saved
+        ? "PDF technique genere."
+        : "PDF technique genere depuis le brouillon local (sauvegarde distante indisponible)."
+    );
   }
 
   if (loading) return <div className="studio-loading">Chargement du studio...</div>;
@@ -672,9 +703,9 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
         <Link className="button-ghost" href={`/reports/${reportId}`}>Voir detail</Link>
         {shareUrl ? <a className="button-ghost" href={shareUrl} target="_blank" rel="noreferrer">Ouvrir lien mobile</a> : null}
         <a className="button-ghost" href={`/api/reports/${reportId}/pdf?preview=1`} target="_blank" rel="noreferrer">Ouvrir PDF</a>
-        <a className="button-ghost" href={`/api/reports/${reportId}/pdf?kind=technical`} target="_blank" rel="noreferrer">
+        <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
           {technicalLabel}
-        </a>
+        </button>
       </>
     );
   }
@@ -868,9 +899,9 @@ export default function ReportEditorStudio({ reportId }: { reportId: string }) {
             <button className="button-secondary" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
               {technicalLabel}
             </button>
-            <a className="button-ghost" href={`/api/reports/${reportId}/pdf?kind=technical`} target="_blank" rel="noreferrer">
+            <button className="button-ghost" type="button" onClick={() => void openTechnicalPdfFromStudio()}>
               {technicalLabel}
-            </a>
+            </button>
           </div>
         </div>
 
