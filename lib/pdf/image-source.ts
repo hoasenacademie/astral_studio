@@ -90,9 +90,16 @@ function signCandidatesForPdf(publicPath?: string) {
 }
 
 function cachePathForWebp(publicPath: string) {
-  const key = signKeyFromPublicPath(publicPath);
-  if (!key) return null;
-  return path.join(pdfCacheRoot, "signs", `${key}.png`);
+  const normalized = normalizePublicPath(publicPath);
+  if (!normalized.endsWith(".webp")) return null;
+
+  const relativeOutput = normalized
+    .slice(1)
+    .replace(/\\/g, "/")
+    .replace(/\//g, "_")
+    .replace(/\.webp$/i, ".png");
+
+  return path.join(pdfCacheRoot, "webp", relativeOutput);
 }
 
 async function convertWebpToPdfPng(publicPath: string) {
@@ -172,6 +179,7 @@ export async function ensurePdfWebpCompatibilityCache() {
       await convertWebpToPdfPng(`/signs/${key}.webp`);
       await convertWebpToPdfPng(`/signs-mobile/${key}.webp`);
     }
+    await convertWebpToPdfPng("/pdf/cover.webp");
 
     pdfWebpPrepared = true;
   })();
@@ -201,6 +209,35 @@ export function imageSourceFromPdfSignPath(publicPath?: string): string | null {
     }
 
     const source = imageSourceFromPublicPath(normalized);
+    if (source) return source;
+  }
+
+  return null;
+}
+
+export function imageSourceFromPdfPath(publicPath?: string): string | null {
+  const normalized = normalizePublicPath(publicPath);
+  if (!normalized) return null;
+
+  const candidates = normalized.endsWith(".webp")
+    ? [
+        normalized,
+        normalized.replace(/\.webp$/i, ".png"),
+        normalized.replace(/\.webp$/i, ".jpg"),
+        normalized.replace(/\.webp$/i, ".jpeg")
+      ]
+    : [normalized];
+
+  for (const candidate of candidates) {
+    if (candidate.endsWith(".webp")) {
+      const convertedPath = pdfWebpCache.get(candidate);
+      if (!convertedPath) continue;
+      const source = imageSourceFromAbsolute(convertedPath);
+      if (source) return source;
+      continue;
+    }
+
+    const source = imageSourceFromPublicPath(candidate);
     if (source) return source;
   }
 

@@ -217,6 +217,7 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
   const names = report.mode === "solo"
     ? textOrFallback(report.subjects.solo?.firstName)
     : `${textOrFallback(report.subjects.personA?.firstName)} — ${textOrFallback(report.subjects.personB?.firstName)}`;
+  const endPdfLabel = report.mode === "compatibility" ? "Astral Compatibility" : "Astral Portrait";
 
   return (
     <div ref={rootRef} className="mobile-reading-shell">
@@ -401,7 +402,7 @@ export function MobileReadingView({ report, options }: { report: ReportRecord; o
             <div className="section-kicker">Votre document</div>
             <div className="mobile-share-actions">
               <a className="mobile-share-button mobile-share-button--pdf" href={`/api/reports/${report.id}/pdf`} target="_blank" rel="noreferrer">
-                Astral Compatibility
+                {endPdfLabel}
               </a>
             </div>
           </section>

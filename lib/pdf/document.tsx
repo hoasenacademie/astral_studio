@@ -1,16 +1,13 @@
-import path from "path";
 import { Document } from "@react-pdf/renderer";
 import { ReportRecord } from "@/lib/types";
 import { resolveEditorialLayoutPlan } from "@/lib/editorial-layout-plan";
-import { imageSourceFromAbsolute, imageSourceFromPdfSignPath } from "@/lib/pdf/image-source";
+import { imageSourceFromPdfPath, imageSourceFromPdfSignPath } from "@/lib/pdf/image-source";
 import { sanitizePdfText } from "@/lib/pdf/text-utils";
 import { PdfCoverPage } from "@/components/pdf/pdf-cover-page";
 import { PdfSignaturePage } from "@/components/pdf/pdf-signature-page";
 import { PdfEditorialPage } from "@/components/pdf/pdf-editorial-page";
 import { PdfQuotePage } from "@/components/pdf/pdf-quote-page";
 import { PdfConclusionPage } from "@/components/pdf/pdf-conclusion-page";
-
-const COVER = path.join(process.cwd(), "public", "pdf", "cover.png");
 
 function safeSectionText(value?: string | null): string {
   const source = sanitizePdfText(value);
@@ -35,7 +32,7 @@ function safeSectionText(value?: string | null): string {
 
 export function StudioPdfDocumentPages({ report }: { report: ReportRecord }) {
   const plan = resolveEditorialLayoutPlan(report);
-  const coverImage = imageSourceFromAbsolute(COVER);
+  const coverImage = imageSourceFromPdfPath("/pdf/cover.webp") ?? imageSourceFromPdfPath("/pdf/cover.png");
 
   return (
     <>

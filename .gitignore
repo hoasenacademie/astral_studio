@@ -16,3 +16,4 @@ Thumbs.db
 data/storage/
 
 .vercel
+.env*.local
