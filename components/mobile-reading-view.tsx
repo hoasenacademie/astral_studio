@@ -33,20 +33,100 @@ function resolveMobileSignImage(
   return asset?.image ?? "";
 }
 
-function splitLongParagraph(paragraph: string, maxWords: number) {
-  const words = paragraph.trim().split(/\s+/).filter(Boolean);
-  if (words.length <= maxWords) return [paragraph.trim()].filter(Boolean);
+function countWords(input: string) {
+  return input.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function splitSentenceByWords(sentence: string, maxWords: number) {
+  const words = sentence.trim().split(/\s+/).filter(Boolean);
+  if (words.length <= maxWords) return [sentence.trim()].filter(Boolean);
 
   const chunks: string[] = [];
-  let current: string[] = [];
-  for (const word of words) {
-    current.push(word);
-    if (current.length >= maxWords) {
-      chunks.push(current.join(" "));
-      current = [];
+  for (let i = 0; i < words.length; i += maxWords) {
+    chunks.push(words.slice(i, i + maxWords).join(" "));
+  }
+  return chunks;
+}
+
+function sentenceUnits(paragraph: string, maxWords: number) {
+  const normalized = paragraph.replace(/\s+/g, " ").trim();
+  if (!normalized) return [] as string[];
+
+  const sentences = normalized
+    .split(/(?<=[.!?…])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+
+  if (sentences.length <= 1) return splitSentenceByWords(normalized, maxWords);
+
+  const units: string[] = [];
+  for (const sentence of sentences) {
+    units.push(...splitSentenceByWords(sentence, maxWords));
+  }
+  return units;
+}
+
+function splitLongParagraph(paragraph: string, maxWords: number) {
+  const normalized = paragraph.replace(/\s+/g, " ").trim();
+  if (!normalized) return [] as string[];
+  if (countWords(normalized) <= maxWords) return [normalized];
+
+  const units = sentenceUnits(normalized, maxWords);
+  if (!units.length) return [] as string[];
+
+  const minTailWords = Math.max(10, Math.floor(maxWords * 0.22));
+  const hardCap = maxWords + Math.max(12, Math.floor(maxWords * 0.2));
+  const unitWords = units.map((unit) => countWords(unit));
+
+  const suffixRemaining = new Array(unitWords.length).fill(0);
+  let running = 0;
+  for (let i = unitWords.length - 1; i >= 0; i -= 1) {
+    suffixRemaining[i] = running;
+    running += unitWords[i];
+  }
+
+  const chunks: string[] = [];
+  let current = "";
+  let currentWords = 0;
+
+  for (let i = 0; i < units.length; i += 1) {
+    const unit = units[i];
+    const words = unitWords[i];
+    if (!current) {
+      current = unit;
+      currentWords = words;
+      continue;
+    }
+
+    const combinedWords = currentWords + words;
+    const remainingWords = suffixRemaining[i];
+    const canKeepSentenceWhole =
+      combinedWords <= maxWords ||
+      (remainingWords <= minTailWords && combinedWords <= hardCap);
+
+    if (canKeepSentenceWhole) {
+      current = `${current} ${unit}`;
+      currentWords = combinedWords;
+      continue;
+    }
+
+    chunks.push(current.trim());
+    current = unit;
+    currentWords = words;
+  }
+
+  if (current) chunks.push(current.trim());
+
+  if (chunks.length >= 2) {
+    const lastIndex = chunks.length - 1;
+    const lastWords = countWords(chunks[lastIndex]);
+    const prevWords = countWords(chunks[lastIndex - 1]);
+    if (lastWords < minTailWords && prevWords + lastWords <= hardCap) {
+      chunks[lastIndex - 1] = `${chunks[lastIndex - 1]} ${chunks[lastIndex]}`.trim();
+      chunks.pop();
     }
   }
-  if (current.length) chunks.push(current.join(" "));
+
   return chunks;
 }
 
