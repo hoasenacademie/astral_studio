@@ -261,7 +261,14 @@ async function deleteReportPg(client: PgClient, id: string) {
 }
 
 function createShareToken() {
-  return `shr_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+  const t = Date.now().toString(36).slice(-5);
+  const r = Math.random().toString(36).slice(2, 8);
+  return `${t}${r}`;
+}
+
+function shouldRotateShareToken(token?: string | null) {
+  if (!token) return true;
+  return token.startsWith("shr_");
 }
 
 export async function listReports(): Promise<ReportRecord[]> {
@@ -321,12 +328,14 @@ export async function deleteReport(id: string) {
 export async function publishReport(id: string): Promise<ReportRecord | null> {
   const current = await getReport(id);
   if (!current) return null;
+  const existingToken = current.share?.shareToken ?? null;
+  const nextToken = shouldRotateShareToken(existingToken) ? createShareToken() : existingToken;
 
   const next: ReportRecord = {
     ...current,
     share: {
       isPublished: true,
-      shareToken: current.share?.shareToken ?? createShareToken(),
+      shareToken: nextToken,
       publishedAt: current.share?.publishedAt ?? new Date().toISOString()
     },
     updatedAt: new Date().toISOString()
