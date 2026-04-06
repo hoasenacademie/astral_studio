@@ -435,7 +435,7 @@ export function TechnicalPromptPdfDocumentPages({ report }: { report: ReportReco
         <Text style={techStyles.sectionTitle}>Regles globales de generation GPT</Text>
         <Text style={techStyles.paragraph}>
           1) Respecter l ordre exact des keys canoniques. 2) Produire un bloc par section en format machine.
-          3) Ne jamais omettre quote. 4) Laisser vide un champ non requis.
+          3) Ne jamais omettre quote. 4) Ne jamais laisser un champ vide: utiliser "Non renseigne" si necessaire.
           5) Redaction: precise, nuancee, concrete, style editorial premium.
         </Text>
         {isCompatibility ? (
@@ -447,7 +447,7 @@ export function TechnicalPromptPdfDocumentPages({ report }: { report: ReportReco
         <Text style={techStyles.sectionTitle}>Format machine obligatoire</Text>
         <View style={techStyles.monoBlock}>
           <Text style={techStyles.monoText}>
-            {`===SECTION===\nkey: <canonical_key>\ntitle: <titre>\nsubtitle: <sous_titre>\n\nintro:\n<texte>\n\nbody:\n<texte>\n\nquote:\n<texte>\n\nsignature:\n<texte ou vide>\n===END===`}
+            {`===SECTION===\nkey: <canonical_key>\ntitle: <titre>\nsubtitle: <texte ou "Non renseigne">\n\nintro:\n<texte ou "Non renseigne">\n\nbody:\n<texte ou "Non renseigne">\n\nquote:\n<texte ou "Non renseigne">\n\nsignature:\n<texte ou "Non renseigne">\n===END===`}
           </Text>
         </View>
         <TechnicalFooter />

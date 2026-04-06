@@ -360,6 +360,10 @@ function extractMachineField(sectionText: string, targetField: MachineField): st
   return bufferByField[targetField].join("\n").trim();
 }
 
+function hasValue(value?: string): boolean {
+  return Boolean(value && value.trim().length > 0);
+}
+
 export function detectNarrativeMode(rawInput: string): {
   mode: NarrativeHintMode;
   soloScore: number;
@@ -477,26 +481,43 @@ export function parseGptStructuredNarrative(
     const signature = extractMachineField(block, "signature");
 
     const sectionWarnings: string[] = [];
+    const requiredFields: MachineField[] = template.quoteOnly
+      ? ["quote"]
+      : key === "about_reading" || key === "compat_about_reading"
+        ? ["intro", "body"]
+        : key === "conclusion" || key === "compat_conclusion"
+          ? ["intro", "body", "quote"]
+          : ["intro", "body", "quote"];
 
-    if (!titleValue) sectionWarnings.push("title manquant");
-    if (!subtitleValue) sectionWarnings.push("subtitle manquant");
-
-    if (!template.quoteOnly) {
-      if (!intro) sectionWarnings.push("intro manquante");
-      if (!body) sectionWarnings.push("body manquant");
+    if (!hasValue(titleValue)) sectionWarnings.push("title manquant");
+    for (const requiredField of requiredFields) {
+      const value = requiredField === "intro"
+        ? intro
+        : requiredField === "body"
+          ? body
+          : requiredField === "quote"
+            ? quote
+            : signature;
+      if (!hasValue(value)) {
+        sectionWarnings.push(`${requiredField} manquante`);
+      }
     }
 
-    if (!quote) sectionWarnings.push("quote manquante");
+    const requiredCount = 1 + requiredFields.length;
+    const presentCount =
+      (hasValue(titleValue) ? 1 : 0) +
+      requiredFields.reduce((sum, requiredField) => {
+        const value = requiredField === "intro"
+          ? intro
+          : requiredField === "body"
+            ? body
+            : requiredField === "quote"
+              ? quote
+              : signature;
+        return sum + (hasValue(value) ? 1 : 0);
+      }, 0);
 
-    const confidence =
-      40 +
-      (titleValue ? 10 : 0) +
-      (subtitleValue ? 5 : 0) +
-      (intro ? 15 : 0) +
-      (body ? 15 : 0) +
-      (quote ? 10 : 0) +
-      (signature ? 5 : 0) -
-      sectionWarnings.length * 5;
+    const confidence = Math.round((presentCount / requiredCount) * 100);
 
     sections.push({
       key,
@@ -518,18 +539,6 @@ export function parseGptStructuredNarrative(
         code: "SECTION_MISSING",
         message: `Section absente: ${template.key}`,
         sectionKey: template.key
-      });
-      sections.push({
-        key: template.key,
-        title: template.title,
-        subtitle: template.subtitle,
-        intro: "",
-        body: "",
-        quote: "",
-        signature: "",
-        sourceSlice: "",
-        confidence: 0,
-        warnings: ["Section absente"]
       });
     }
   }
