@@ -1,33 +1,48 @@
 import { SignKey, SignMeta } from "@/lib/types";
 
+const SYMBOLS = {
+  belier: "\u2648",
+  taureau: "\u2649",
+  gemeaux: "\u264A",
+  cancer: "\u264B",
+  lion: "\u264C",
+  vierge: "\u264D",
+  balance: "\u264E",
+  scorpion: "\u264F",
+  sagittaire: "\u2650",
+  capricorne: "\u2651",
+  verseau: "\u2652",
+  poissons: "\u2653"
+} as const;
+
 export const SIGNS: SignMeta[] = [
-  { key: "belier", label: "Bélier", symbol: "♈", image: "/signs/belier.png" },
-  { key: "taureau", label: "Taureau", symbol: "♉", image: "/signs/taureau.png" },
-  { key: "gemeaux", label: "Gémeaux", symbol: "♊", image: "/signs/gemeaux.png" },
-  { key: "cancer", label: "Cancer", symbol: "♋", image: "/signs/cancer.png" },
-  { key: "lion", label: "Lion", symbol: "♌", image: "/signs/lion.png" },
-  { key: "vierge", label: "Vierge", symbol: "♍", image: "/signs/vierge.png" },
-  { key: "balance", label: "Balance", symbol: "♎", image: "/signs/balance.png" },
-  { key: "scorpion", label: "Scorpion", symbol: "♏", image: "/signs/scorpion.png" },
-  { key: "sagittaire", label: "Sagittaire", symbol: "♐", image: "/signs/sagittaire.png" },
-  { key: "capricorne", label: "Capricorne", symbol: "♑", image: "/signs/capricorne.png" },
-  { key: "verseau", label: "Verseau", symbol: "♒", image: "/signs/verseau.png" },
-  { key: "poissons", label: "Poissons", symbol: "♓", image: "/signs/poissons.png" }
+  { key: "belier", label: "Bélier", symbol: SYMBOLS.belier, image: "/signs/belier.png" },
+  { key: "taureau", label: "Taureau", symbol: SYMBOLS.taureau, image: "/signs/taureau.png" },
+  { key: "gemeaux", label: "Gémeaux", symbol: SYMBOLS.gemeaux, image: "/signs/gemeaux.png" },
+  { key: "cancer", label: "Cancer", symbol: SYMBOLS.cancer, image: "/signs/cancer.png" },
+  { key: "lion", label: "Lion", symbol: SYMBOLS.lion, image: "/signs/lion.png" },
+  { key: "vierge", label: "Vierge", symbol: SYMBOLS.vierge, image: "/signs/vierge.png" },
+  { key: "balance", label: "Balance", symbol: SYMBOLS.balance, image: "/signs/balance.png" },
+  { key: "scorpion", label: "Scorpion", symbol: SYMBOLS.scorpion, image: "/signs/scorpion.png" },
+  { key: "sagittaire", label: "Sagittaire", symbol: SYMBOLS.sagittaire, image: "/signs/sagittaire.png" },
+  { key: "capricorne", label: "Capricorne", symbol: SYMBOLS.capricorne, image: "/signs/capricorne.png" },
+  { key: "verseau", label: "Verseau", symbol: SYMBOLS.verseau, image: "/signs/verseau.png" },
+  { key: "poissons", label: "Poissons", symbol: SYMBOLS.poissons, image: "/signs/poissons.png" }
 ];
 
 const SYMBOL_TO_KEY: Record<string, SignKey> = {
-  "♈": "belier",
-  "♉": "taureau",
-  "♊": "gemeaux",
-  "♋": "cancer",
-  "♌": "lion",
-  "♍": "vierge",
-  "♎": "balance",
-  "♏": "scorpion",
-  "♐": "sagittaire",
-  "♑": "capricorne",
-  "♒": "verseau",
-  "♓": "poissons"
+  [SYMBOLS.belier]: "belier",
+  [SYMBOLS.taureau]: "taureau",
+  [SYMBOLS.gemeaux]: "gemeaux",
+  [SYMBOLS.cancer]: "cancer",
+  [SYMBOLS.lion]: "lion",
+  [SYMBOLS.vierge]: "vierge",
+  [SYMBOLS.balance]: "balance",
+  [SYMBOLS.scorpion]: "scorpion",
+  [SYMBOLS.sagittaire]: "sagittaire",
+  [SYMBOLS.capricorne]: "capricorne",
+  [SYMBOLS.verseau]: "verseau",
+  [SYMBOLS.poissons]: "poissons"
 };
 
 const ALIAS_TO_KEY: Record<string, SignKey> = {

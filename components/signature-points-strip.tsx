@@ -17,9 +17,18 @@ export function SignaturePointsStrip({
       {validPoints.map((point) => (
         <div className="signature-point-card" key={point.key}>
           <div className="signature-point-frame">
-            <span className="signature-point-symbol" aria-hidden="true">
-              {point.asset?.symbol ?? "•"}
-            </span>
+            {point.asset?.image ? (
+              <img
+                className="signature-point-image"
+                src={point.asset.image}
+                alt={`Signe ${point.asset.label}`}
+                loading="lazy"
+              />
+            ) : (
+              <span className="signature-point-symbol" aria-hidden="true">
+                {point.asset?.symbol ?? "•"}
+              </span>
+            )}
           </div>
           <div className="signature-point-meta">
             <span className="signature-point-label">{point.label}</span>
