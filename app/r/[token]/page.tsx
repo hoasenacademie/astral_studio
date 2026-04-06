@@ -14,7 +14,7 @@ export default async function SharedReportPage({ params }: { params: Promise<{ t
         <MobileReadingView
           report={report}
           options={{
-            analysisOnly: true,
+            analysisOnly: false,
             showShareActions: false
           }}
         />

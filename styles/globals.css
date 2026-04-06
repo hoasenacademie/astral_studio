@@ -1322,3 +1322,95 @@ body.studio-fullscreen .studio-preview {
     grid-template-columns: 1fr;
   }
 }
+
+/* Mobile polish: richer motion for shared/client reading */
+.mobile-reading-shell {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.mobile-reading-shell::before,
+.mobile-reading-shell::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.46;
+}
+
+.mobile-reading-shell::before {
+  width: 220px;
+  height: 220px;
+  top: -56px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(199,163,155,0.46), rgba(199,163,155,0));
+  animation: mobileHaloFloatA 12s ease-in-out infinite;
+}
+
+.mobile-reading-shell::after {
+  width: 180px;
+  height: 180px;
+  bottom: 10%;
+  left: -70px;
+  background: radial-gradient(circle, rgba(140,106,97,0.22), rgba(140,106,97,0));
+  animation: mobileHaloFloatB 15s ease-in-out infinite;
+}
+
+.mobile-progressline__bar {
+  background: linear-gradient(90deg, #d2b1a9, #8c6a61, #b9968d);
+  background-size: 220% 100%;
+  animation: mobileProgressGlow 3.2s linear infinite;
+}
+
+.mobile-fade-up {
+  opacity: 0;
+  transform: translateY(18px) scale(0.987);
+  animation: mobileFadeUpSmooth 0.56s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.mobile-screen {
+  backdrop-filter: blur(6px);
+}
+
+.mobile-screen--cover .mobile-screen__veil {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255,255,255,0.36), transparent 35%),
+    linear-gradient(180deg, rgba(247,242,236,0.04), rgba(247,242,236,0.42));
+}
+
+.mobile-signature-card__frame {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.48), 0 8px 20px rgba(17,12,10,0.08);
+}
+
+@keyframes mobileFadeUpSmooth {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mobileHaloFloatA {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-10px, 16px, 0); }
+}
+
+@keyframes mobileHaloFloatB {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(14px, -12px, 0); }
+}
+
+@keyframes mobileProgressGlow {
+  0% { background-position: 0% 0; }
+  100% { background-position: 220% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-fade-up,
+  .mobile-reading-shell::before,
+  .mobile-reading-shell::after,
+  .mobile-progressline__bar {
+    animation: none !important;
+  }
+}
